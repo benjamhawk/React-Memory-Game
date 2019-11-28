@@ -4,6 +4,7 @@ import { AppContainer } from './styled-components/AppContainer';
 import { ThemeProvider } from 'styled-components';
 import { animalTheme } from './themes';
 import { Header } from './components/Header'
+import { Cards } from './components/Cards';
 
 function App () {
   return (
@@ -11,6 +12,7 @@ function App () {
       theme={animalTheme}>
       <AppContainer>
         <Header />
+        <Cards />
       </AppContainer>
     </ThemeProvider>
   )
