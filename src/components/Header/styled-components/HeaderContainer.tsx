@@ -6,7 +6,7 @@ export const HeaderContainer = styled.div`
   grid-column: 1/4;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr 1fr;
-  align-content: center;
+  align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
