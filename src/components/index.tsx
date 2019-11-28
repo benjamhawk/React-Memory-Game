@@ -1,15 +1,10 @@
 import React from 'react'
-import { HeaderContainer } from './Header/styled-components/HeaderContainer'
-import styled from 'styled-components'
-import { GameData } from './Header/GameData'
 
-const Title = styled.h1`
-  grid-column: 2/3;
-  justify-self: center;
-  font-size: 3rem;
-  font-weight: 600;
-  
-`
+import { HeaderContainer } from './Header/styled-components/HeaderContainer'
+import { GameData } from './Header/GameData'
+import { Title } from './Header/styled-components/Title'
+import { ResetButton } from './Header/ResetButton'
+
 export function Header () {
   return (
     <HeaderContainer>
@@ -17,7 +12,7 @@ export function Header () {
       <Title>
         Memory Game
       </Title>
-      {/* <ResetButton /> */}
+      <ResetButton />
       {/* <FeedbackText /> */}
     </HeaderContainer>
   )

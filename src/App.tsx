@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css';
 import { AppContainer } from './styled-components/AppContainer';
-import { Header } from './components/Header';
+import { Header } from './components';
 import { ThemeProvider } from 'styled-components';
 import { animalTheme } from './themes';
 
