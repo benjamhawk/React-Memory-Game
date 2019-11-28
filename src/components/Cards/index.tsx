@@ -7,6 +7,9 @@ const CardContainer = styled.div`
   grid-row: 2/3;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(4, 160px);
+  height: 100%;
+  width: 100%;
+  padding-top: 30px;
 `
 
 const Card = styled.div`
