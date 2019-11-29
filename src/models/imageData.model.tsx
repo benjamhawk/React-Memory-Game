@@ -1,6 +1,9 @@
 export type ImageDataModel =
 {
-  selectedImage: number | null,
+  selectedImages:  {
+    first: number | null, 
+    second: number | null
+  }
   images: ImageModel 
 }
 

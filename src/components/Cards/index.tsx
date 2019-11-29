@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { AppState } from '../../redux'
 import { connect } from 'react-redux'
 
@@ -16,6 +16,11 @@ type Props = {
 }
 
 function Cards ({ imageData, selectImage }: Props) {
+  let duplicatedImages: ImageModel = [...imageData.images, ...imageData.images]
+
+  useEffect(() => {
+     shuffle(duplicatedImages)
+  }, [])
   
   const shuffle = (array: ImageModel): ImageModel => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -29,8 +34,7 @@ function Cards ({ imageData, selectImage }: Props) {
     selectImage(index)
   }
   
-  const shuffledImages: any = shuffle([...imageData.images, ...imageData.images])
-  const imageElements: any = shuffledImages.map((image: any, index: number):any =>
+  const imageElements: any = duplicatedImages.map((image: any, index: number):any =>
     <Card
       key={index}
       onClick={() => onCardClick(index)}
@@ -38,7 +42,10 @@ function Cards ({ imageData, selectImage }: Props) {
       <Img
         src={imageMap[image.name]}
         key={index}
-        isSelected={imageData.selectedImage === index}
+        isSelected={
+          imageData.selectedImages.first === index
+          || imageData.selectedImages.second === index
+        }
         draggable={false}
       />
     </Card>

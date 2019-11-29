@@ -11,7 +11,10 @@ import zebra from "../assets/images/animals/zebra.jpg"
 import { ImageDataModel } from "../models/imageData.model"
 
 export const animalsData: ImageDataModel = {
-  selectedImage: null,
+  selectedImages: {
+    first: null,
+    second: null
+  },
   images: [
     {
       name: 'elephant',
