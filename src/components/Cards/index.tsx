@@ -1,49 +1,72 @@
-import React from 'react'
+import React, { valueOf } from 'react'
 import styled from 'styled-components'
+import { AppState } from '../../redux'
+import { connect } from 'react-redux'
+import { Card } from './styled-components/Card'
+import { CardContainer } from './styled-components/CardContainer'
 
-const CardContainer = styled.div`
-  display: grid;
-  grid-column: 2/3;
-  grid-row: 2/3;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(4, 160px);
-  height: 100%;
-  width: 100%;
-  padding-top: 30px;
-`
+import elephant from "../../assets/images/animals/elephant.jpg"
+import fish from "../../assets/images/animals/fish.jpg"
+import cheetah from "../../assets/images/animals/cheetah.jpg"
+import fox from "../../assets/images/animals/fox.jpg"
+import frog from "../../assets/images/animals/frog.jpg"
+import penguin from "../../assets/images/animals/penguin.jpg"
+import sheep from "../../assets/images/animals/sheep.jpg"
+import walrus from "../../assets/images/animals/walrus.jpg"
+import giraffe from "../../assets/images/animals/giraffe.jpg"
+import zebra from "../../assets/images/animals/zebra.jpg"
+import { Img } from './styled-components/Img'
 
-const Card = styled.div`
-  align-self: center;
-  justify-self: center;
-  background-color: ${props => props.theme.cardColor};
-  border-radius: 50%;
-  width: 130px;
-  height: 130px;
-`
+type Props = {
+  images: string[]
+}
 
-export function Cards () {
+const imageMap: any = {
+  'elephant': elephant,
+  'fish': fish,
+  'cheetah': cheetah,
+  'fox': fox,
+  'frog': frog,
+  'penguin': penguin,
+  'sheep': sheep,
+  'walrus': walrus,
+  'giraffe': giraffe,
+  'zebra': zebra
+}
+
+
+function Cards ({ images }: Props) {
+  const shuffle = (array: string[]): any => {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array
+  }
+  
+  const shuffledImages: any = shuffle([...images, ...images])
+  const imageElements: any = shuffledImages.map((imageSrc: string, index: number) =>
+    <Card
+      key={index}
+    >
+      <Img
+        src={imageMap[imageSrc]}
+        key={index}
+      />
+    </Card>
+  )
+
   return (
     <CardContainer>
-      <Card /> 
-      <Card /> 
-      <Card /> 
-      <Card /> 
-      <Card /> 
-      <Card /> 
-      <Card /> 
-      <Card /> 
-      <Card /> 
-      <Card /> 
-      <Card /> 
-      <Card /> 
-      <Card /> 
-      <Card /> 
-      <Card /> 
-      <Card /> 
-      <Card /> 
-      <Card /> 
-      <Card /> 
-      <Card /> 
+      {imageElements}
     </CardContainer>
   )
 }
+
+const mapStateToProps = (state: AppState) => {
+  return {
+    images: state.images
+  }
+}
+
+export default connect(mapStateToProps)(Cards)
