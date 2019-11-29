@@ -1,9 +1,5 @@
 import styled from 'styled-components'
 
-type Props = {
-  // imageSrc: any
-}
-
 export const Card = styled.div`
   align-self: center;
   justify-self: center;

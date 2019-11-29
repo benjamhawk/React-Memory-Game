@@ -1,12 +1,18 @@
 import { animalsData } from '../../imageData/animals'
-import { SET_IMAGES } from '../actionStrings'
+import { SET_IMAGES, SELECT_IMAGE } from '../actionStrings'
+import { ImageDataModel } from '../../models/imageData.model'
 
-const INITIAL_STATE: string[] = animalsData
+const INITIAL_STATE: ImageDataModel = animalsData
 
 export default (state: any = INITIAL_STATE, { type, payload }: any) => {
-  if (type === SET_IMAGES) {
-    return payload
-  } else {
-    return state
+  switch (type) {
+    case SET_IMAGES:
+      return payload
+    case SELECT_IMAGE:
+      return {
+        ...state, selectedImage: payload 
+      }
+    default:
+      return state
   }
 }
