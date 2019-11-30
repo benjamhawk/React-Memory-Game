@@ -4,7 +4,8 @@ export type ImageDataModel =
     first: number | null, 
     second: number | null
   }
-  images: ImageModel 
+  images: ImageModel,
+  matchesFound: string[]
 }
 
 export type ImageModel = {

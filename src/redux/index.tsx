@@ -4,9 +4,9 @@ import { ImageDataModel } from '../models/imageData.model'
 
 
 export type AppState = {
-  images: ImageDataModel 
+  imageData: ImageDataModel 
 }
 
 export default combineReducers({
-  images: imagesReducer
+  imageData: imagesReducer
 })

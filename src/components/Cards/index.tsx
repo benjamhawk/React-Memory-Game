@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AppState } from '../../redux'
 import { connect } from 'react-redux'
 
@@ -8,20 +8,38 @@ import { Img } from './styled-components/Img'
 import { imageMap } from '../../imageData/animals'
 import { ImageDataModel, ImageModel } from '../../models/imageData.model'
 import { selectImage } from '../../redux/actions/selectImage'
+import { addMatch } from '../../redux/actions/addMatch'
+import imagesReducer from '../../redux/reducers/imagesReducer'
 
 
 type Props = {
-  imageData: ImageDataModel
-  selectImage: (index: any) => void
+  images: ImageModel,
+  selectedImages: {
+    first: number | null,
+    second: number | null
+  }
+  selectImage: (index: any) => void,
+  addMatch: any
+  matchesFound: string[]
 }
 
-function Cards ({ imageData, selectImage }: Props) {
-  let duplicatedImages: ImageModel = [...imageData.images, ...imageData.images]
+function Cards ({
+  images,
+  selectedImages,
+  selectImage,
+  addMatch,
+  matchesFound
+}: Props) {
+  const [cards, setCards] = useState([...images, ...images])
 
   useEffect(() => {
-     shuffle(duplicatedImages)
+    setCards(shuffle(cards))
   }, [])
-  
+
+  useEffect(() => {
+    checkIfImgsMatch()
+  }, [selectedImages])
+
   const shuffle = (array: ImageModel): ImageModel => {
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
@@ -30,21 +48,37 @@ function Cards ({ imageData, selectImage }: Props) {
     return array
   }
 
-  const onCardClick = (index: number) => {
-    selectImage(index)
+  const checkIfImgsMatch = () => {
+    if (selectedImages.first !== null && selectedImages.second !== null) {
+      if (cards[selectedImages.first].name === cards[selectedImages.second].name) {
+        addMatch(cards[selectedImages.first].name)
+      }
+    }
   }
-  
-  const imageElements: any = duplicatedImages.map((image: any, index: number):any =>
+
+  const onCardClick = (index: number) => {
+    if (index !== selectedImages.first
+      || selectedImages.second !== null) {
+      selectImage(index)
+    }
+  }
+
+  const checkIfCardIsHidden = (index: number): number => {
+    return matchesFound.indexOf(cards[index].name)
+  }
+
+  const imageElements: any = cards.map((image: any, index: number): any =>
     <Card
       key={index}
       onClick={() => onCardClick(index)}
+      ishidden={checkIfCardIsHidden(index)}
     >
       <Img
         src={imageMap[image.name]}
         key={index}
         isSelected={
-          imageData.selectedImages.first === index
-          || imageData.selectedImages.second === index
+          selectedImages.first === index
+          || selectedImages.second === index
         }
         draggable={false}
       />
@@ -60,8 +94,10 @@ function Cards ({ imageData, selectImage }: Props) {
 
 const mapStateToProps = (state: AppState) => {
   return {
-    imageData: state.images
+    images: state.imageData.images,
+    selectedImages: state.imageData.selectedImages,
+    matchesFound: state.imageData.matchesFound
   }
 }
 
-export default connect(mapStateToProps, { selectImage })(Cards)
+export default connect(mapStateToProps, { selectImage, addMatch })(Cards)

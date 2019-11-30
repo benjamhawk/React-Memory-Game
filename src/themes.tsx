@@ -5,7 +5,8 @@ export type Theme = {
   headerDataColor: string
   warningColor: string
   bgColor: string,
-  cardColor: string
+  cardColor: string,
+  cardHiddenColor: string
 }
 
 export const animalTheme: Theme = {
@@ -15,6 +16,7 @@ export const animalTheme: Theme = {
   headerDataColor: '#E6D55D',
   warningColor: 'red',
   bgColor: 'linear-gradient(90deg, rgba(217,175,52) 0%, rgba(210,179,86) 50%, rgba(214,168,32) 100%)',
-  cardColor: '#CA4113'
+  cardColor: '#CA4113',
+  cardHiddenColor: '#D3D3D330'
 
 }
