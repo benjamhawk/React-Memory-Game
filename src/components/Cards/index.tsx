@@ -6,22 +6,10 @@ import { Card } from './styled-components/Card'
 import { CardContainer } from './styled-components/CardContainer'
 import { Img } from './styled-components/Img'
 import { imageMap } from '../../imageData/animals'
-import { ImageDataModel, ImageModel } from '../../models/imageData.model'
 import { selectImage } from '../../redux/actions/selectImage'
 import { addMatch } from '../../redux/actions/addMatch'
-import imagesReducer from '../../redux/reducers/imagesReducer'
-
-
-type Props = {
-  images: ImageModel,
-  selectedImages: {
-    first: number | null,
-    second: number | null
-  }
-  selectImage: (index: any) => void,
-  addMatch: any
-  matchesFound: string[]
-}
+import { shuffle } from '../../lib/shuffle'
+import { CardsProps } from '../../models/CardsComponent.model'
 
 function Cards ({
   images,
@@ -29,7 +17,7 @@ function Cards ({
   selectImage,
   addMatch,
   matchesFound
-}: Props) {
+}: CardsProps) {
   const [cards, setCards] = useState([...images, ...images])
 
   useEffect(() => {
@@ -39,14 +27,6 @@ function Cards ({
   useEffect(() => {
     checkIfImgsMatch()
   }, [selectedImages])
-
-  const shuffle = (array: ImageModel): ImageModel => {
-    for (let i = array.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array
-  }
 
   const checkIfImgsMatch = () => {
     if (selectedImages.first !== null && selectedImages.second !== null) {
@@ -71,7 +51,7 @@ function Cards ({
     <Card
       key={index}
       onClick={() => onCardClick(index)}
-      ishidden={checkIfCardIsHidden(index)}
+      isHidden={checkIfCardIsHidden(index) === -1 ? false : true }
     >
       <Img
         src={imageMap[image.name]}
@@ -80,6 +60,7 @@ function Cards ({
           selectedImages.first === index
           || selectedImages.second === index
         }
+        isHidden={checkIfCardIsHidden(index)}
         draggable={false}
       />
     </Card>
