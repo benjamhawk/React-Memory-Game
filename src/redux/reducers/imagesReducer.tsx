@@ -1,10 +1,10 @@
-import { animalsData } from '../../imageData/animals'
+import { animalsData } from '../../lib/imageData/animals'
 import { SET_IMAGES, SELECT_IMAGE, ADD_MATCH } from '../actionStrings'
 import { ImageDataModel } from '../../models/imageData.model'
 
 const INITIAL_STATE: ImageDataModel = animalsData
 
-export default (state: any = INITIAL_STATE, { type, payload }: any) => {
+export default (state: ImageDataModel = INITIAL_STATE, { type, payload }: any) => {
   switch (type) {
     case SET_IMAGES:
       return payload

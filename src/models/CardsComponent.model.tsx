@@ -1,4 +1,5 @@
-import { ImageModel } from './imageData.model'
+import { ImageModel } from './ImageData.model'
+import { GameDataModel } from './GameData.model'
 
 export type CardsProps = {
   images: ImageModel,
@@ -8,5 +9,6 @@ export type CardsProps = {
   }
   selectImage: (index: any) => void,
   addMatch: any
-  matchesFound: string[]
+  matchesFound: string[],
+  gameData: GameDataModel
 }

@@ -1,4 +1,4 @@
-import { ImageModel } from "../models/imageData.model";
+import { ImageModel } from "../models/ImageData.model";
 
 export const shuffle = (array: ImageModel): ImageModel => {
     for (let i = array.length - 1; i > 0; i--) {

@@ -5,8 +5,16 @@ import { GameData } from './GameData'
 import { Title } from './styled-components/Title'
 import { ResetButton } from './ResetButton'
 import { FeedbackText } from './FeedbackText'
+import { AppState } from '../../redux'
+import { GameDataModel } from '../../models/GameData.model'
+import { connect } from 'react-redux'
 
-export function Header () {
+type HeaderProps = {
+  gameData: GameDataModel
+}
+function Header ({
+  gameData
+}: HeaderProps) {
   return (
     <HeaderContainer>
       <GameData />
@@ -18,3 +26,11 @@ export function Header () {
     </HeaderContainer>
   )
 }
+
+const mapStateToProps = (state: AppState) => {
+  return {
+    gameData: state.gameData
+  }
+}
+
+export default connect(mapStateToProps)(Header)

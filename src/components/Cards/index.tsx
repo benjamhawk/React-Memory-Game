@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { Card } from './styled-components/Card'
 import { CardContainer } from './styled-components/CardContainer'
 import { Img } from './styled-components/Img'
-import { imageMap } from '../../imageData/animals'
+import { imageMap } from '../../lib/imageData/animals'
 import { selectImage } from '../../redux/actions/selectImage'
 import { addMatch } from '../../redux/actions/addMatch'
 import { shuffle } from '../../lib/shuffle'
@@ -16,7 +16,8 @@ function Cards ({
   selectedImages,
   selectImage,
   addMatch,
-  matchesFound
+  matchesFound,
+  gameData
 }: CardsProps) {
   const [cards, setCards] = useState([...images, ...images])
 
@@ -77,7 +78,8 @@ const mapStateToProps = (state: AppState) => {
   return {
     images: state.imageData.images,
     selectedImages: state.imageData.selectedImages,
-    matchesFound: state.imageData.matchesFound
+    matchesFound: state.imageData.matchesFound,
+    gameData: state.gameData
   }
 }
 

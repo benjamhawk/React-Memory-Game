@@ -1,13 +1,19 @@
-import styled from 'styled-components'
 import React from 'react'
 import { Label } from './styled-components/Label'
 import { Data } from './styled-components/Data'
 import { MatchesLeftDataContainer } from './styled-components/MatchesLeftDataContainer'
-export function MatchesLeftData () {
+import { AppState } from '../../redux'
+import { connect } from 'react-redux'
+
+type Props = {
+  matchesLeft: number
+}
+
+function MatchesLeftData ({ matchesLeft }: Props) {
   return (
     <MatchesLeftDataContainer>
       <Data>
-        7
+        {matchesLeft}
       </Data>
       <Label>
         Matches Left
@@ -16,3 +22,10 @@ export function MatchesLeftData () {
   )
 }
 
+const mapStateToProps = (state: AppState) => {
+  return {
+    matchesLeft: state.gameData.matchesLeft
+  }
+}
+
+export default connect(mapStateToProps)(MatchesLeftData)

@@ -1,12 +1,12 @@
 import React from 'react'
-import { MatchesLeftData } from './MatchesLeftData'
-import { TurnsData } from './TurnsData'
+import MatchesLeftData from './MatchesLeftData'
+import CurrentPlayer from './CurrentPlayer'
 import { GameDataContainer } from './styled-components/GameDataContainer'
 
 export function GameData () {
   return (
     <GameDataContainer>
-      <TurnsData />
+      <CurrentPlayer />
       <MatchesLeftData />
     </GameDataContainer>
   )
