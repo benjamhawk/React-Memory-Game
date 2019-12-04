@@ -1,5 +1,5 @@
 import { animalsData } from '../../lib/imageData/animals'
-import { SET_IMAGES, SELECT_IMAGE, ADD_MATCH } from '../actionStrings'
+import { SET_IMAGES, SELECT_IMAGE, ADD_MATCH, UNSELECT_IMAGES } from '../actionStrings'
 import { ImageDataModel } from '../../models/imageData.model'
 
 const INITIAL_STATE: ImageDataModel = animalsData
@@ -26,14 +26,16 @@ export default (state: ImageDataModel = INITIAL_STATE, { type, payload }: any) =
           }
         }
       } else {
-        return {
-          ...state,
-          selectedImages: {
-            first: -1,
-            second: -1
-          }
-        }
+        return state
       }
+    case UNSELECT_IMAGES:
+      return {
+        ...state,
+        selectedImages: {
+          first: -1,
+          second: -1
+        }
+      } 
     case ADD_MATCH:
       return {
         ...state,

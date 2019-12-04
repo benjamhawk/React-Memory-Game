@@ -8,6 +8,9 @@ export type CardsProps = {
     second: number
   }
   selectImage: (index: any) => void,
+  unselectImages: () => void
+  reduceMatchesLeft: () => void
+  setMatchTotal: (matchTotal: number) => void
   addMatch: any
   matchesFound: string[],
   gameData: GameDataModel

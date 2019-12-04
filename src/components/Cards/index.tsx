@@ -12,12 +12,17 @@ import { shuffle } from '../../lib/shuffle'
 import { CardsProps } from '../../models/CardsComponent.model'
 import { changePlayer } from '../../redux/actions/changePlayer'
 import { addPoint } from '../../redux/actions/addPoint'
+import { unselectImages } from '../../redux/actions/unselectImages'
+import { reduceMatchesLeft } from '../../redux/actions/reduceMatchesLeft'
+import { setMatchTotal } from '../../redux/actions/setMatchTotal'
 
 function Cards ({
   images,
   selectedImages,
   selectImage,
+  unselectImages,
   addMatch,
+  setMatchTotal,
   addPoint,
   matchesFound,
   gameData,
@@ -27,6 +32,7 @@ function Cards ({
 
   useEffect(() => {
     setCards(shuffle(cards))
+    setMatchTotal(images.length)
   }, [])
 
   useEffect(() => {
@@ -38,17 +44,22 @@ function Cards ({
       if (isMatch) {
         addMatch(cards[selectedImages.first].name)
         addPoint(gameData.currentPlayer)
+        reduceMatchesLeft()
       }
     }
 
     const processPlayerTurn = () => {
       if (twoImagesSelected) {
         checkIfMatch()
-        changePlayer()
+        setTimeout(() => {
+          changePlayer()
+          unselectImages()
+        }, 2000)
       }
     }
 
     processPlayerTurn()
+
   }, [selectedImages.second])
 
   const onCardClick = (index: number) => {
@@ -97,4 +108,4 @@ const mapStateToProps = (state: AppState) => {
   }
 }
 
-export default connect(mapStateToProps, { selectImage, addMatch, changePlayer, addPoint })(Cards)
+export default connect(mapStateToProps, { selectImage, unselectImages, addMatch, setMatchTotal, changePlayer, addPoint, reduceMatchesLeft })(Cards)
