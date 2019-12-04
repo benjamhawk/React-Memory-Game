@@ -7,7 +7,7 @@ const INITIAL_STATE: GameDataModel = defaultGameData
 export default (state: GameDataModel = INITIAL_STATE, { type, payload }: any) => {
   switch (type) {
     case ADD_POINT:
-      if (payload === 'player1') {
+      if (payload === 1) {
         return {
           ...state,
           scores: {
@@ -16,7 +16,7 @@ export default (state: GameDataModel = INITIAL_STATE, { type, payload }: any) =>
           },
           matchesLeft: state.matchesLeft - 1
         }
-      } else if (payload === 'player2') {
+      } else if (payload === 2) {
         return {
           ...state, scores: {
             player1: state.scores.player1,

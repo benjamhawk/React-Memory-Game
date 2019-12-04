@@ -1,8 +1,8 @@
 export type ImageDataModel =
 {
   selectedImages:  {
-    first: number | null, 
-    second: number | null
+    first: number  
+    second: number 
   }
   images: ImageModel,
   matchesFound: string[]

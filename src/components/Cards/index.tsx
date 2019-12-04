@@ -10,14 +10,18 @@ import { selectImage } from '../../redux/actions/selectImage'
 import { addMatch } from '../../redux/actions/addMatch'
 import { shuffle } from '../../lib/shuffle'
 import { CardsProps } from '../../models/CardsComponent.model'
+import { changePlayer } from '../../redux/actions/changePlayer'
+import { addPoint } from '../../redux/actions/addPoint'
 
 function Cards ({
   images,
   selectedImages,
   selectImage,
   addMatch,
+  addPoint,
   matchesFound,
-  gameData
+  gameData,
+  changePlayer
 }: CardsProps) {
   const [cards, setCards] = useState([...images, ...images])
 
@@ -26,20 +30,30 @@ function Cards ({
   }, [])
 
   useEffect(() => {
-    checkIfImgsMatch()
-  }, [selectedImages])
+    const twoImagesSelected = selectedImages.first !== -1 && selectedImages.second !== -1
 
-  const checkIfImgsMatch = () => {
-    if (selectedImages.first !== null && selectedImages.second !== null) {
-      if (cards[selectedImages.first].name === cards[selectedImages.second].name) {
+    const checkIfMatch = () => {
+      const isMatch = cards[selectedImages.first].name === cards[selectedImages.second].name
+
+      if (isMatch) {
         addMatch(cards[selectedImages.first].name)
+        addPoint(gameData.currentPlayer)
       }
     }
-  }
+
+    const processPlayerTurn = () => {
+      if (twoImagesSelected) {
+        checkIfMatch()
+        changePlayer()
+      }
+    }
+
+    processPlayerTurn()
+  }, [selectedImages.second])
 
   const onCardClick = (index: number) => {
     if (index !== selectedImages.first
-      || selectedImages.second !== null) {
+      || selectedImages.second !== -1) {
       selectImage(index)
     }
   }
@@ -52,7 +66,7 @@ function Cards ({
     <Card
       key={index}
       onClick={() => onCardClick(index)}
-      isHidden={checkIfCardIsHidden(index) === -1 ? false : true }
+      isHidden={checkIfCardIsHidden(index) === -1 ? false : true}
     >
       <Img
         src={imageMap[image.name]}
@@ -83,4 +97,4 @@ const mapStateToProps = (state: AppState) => {
   }
 }
 
-export default connect(mapStateToProps, { selectImage, addMatch })(Cards)
+export default connect(mapStateToProps, { selectImage, addMatch, changePlayer, addPoint })(Cards)

@@ -9,15 +9,15 @@ export default (state: ImageDataModel = INITIAL_STATE, { type, payload }: any) =
     case SET_IMAGES:
       return payload
     case SELECT_IMAGE:
-      if (state.selectedImages.first === null) {
+      if (state.selectedImages.first === -1) {
         return {
           ...state,
           selectedImages: {
             first: payload,
-            second: null
+            second: -1
           }
         }
-      } else if (state.selectedImages.second === null) {
+      } else if (state.selectedImages.second === -1) {
         return {
           ...state,
           selectedImages: {
@@ -29,8 +29,8 @@ export default (state: ImageDataModel = INITIAL_STATE, { type, payload }: any) =
         return {
           ...state,
           selectedImages: {
-            first: null,
-            second: null
+            first: -1,
+            second: -1
           }
         }
       }

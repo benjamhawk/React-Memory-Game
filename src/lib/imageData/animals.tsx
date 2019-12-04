@@ -12,8 +12,8 @@ import { ImageDataModel } from "../../models/ImageData.model"
 
 export const animalsData: ImageDataModel = {
   selectedImages: {
-    first: null,
-    second: null
+    first: -1,
+    second: -1 
   },
   images: [
     // {
