@@ -9,15 +9,15 @@ type Props = {
   currentPlayer: number
 }
 
-function CurrentPlayer({ currentPlayer }: Props) {
+function CurrentPlayer ({ currentPlayer }: Props) {
   return (
     <TurnsDataContainer>
       <Label>
         Current Player:
-    </Label>
+      </Label>
       <Data>
-       Player {currentPlayer} 
-    </Data>
+       Player {currentPlayer}
+      </Data>
     </TurnsDataContainer>
   )
 }

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 type Props = {
-  isHidden: boolean 
+  isHidden: boolean
 }
 export const Card = styled.div`
   align-self: center;
@@ -11,16 +11,15 @@ export const Card = styled.div`
   background-color: ${(props: Props) => {
     if (!props.isHidden) {
       return props => props.theme.cardColor
-    }
-    else {
+    } else {
       return props => props.theme.cardHiddenColor
     }
   }
-  };
+};
   border-radius: 50%;
-  box-shadow: ${props => 
-    !props.isHidden 
-     ? `${props.theme.cardShadow} 0px 3px 2px` 
-     : ''
-  };
+  box-shadow: ${props =>
+    !props.isHidden
+      ? `${props.theme.cardShadow} 0px 3px 2px`
+      : ''
+};
 `

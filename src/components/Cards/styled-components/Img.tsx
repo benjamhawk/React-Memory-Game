@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 type Props = {
   isSelected: boolean
-  isHidden: number 
+  isHidden: number
 }
 
 export const Img = styled.img`
@@ -15,8 +15,9 @@ export const Img = styled.img`
       return 1
     } else {
       return 0
-    }}
-  };
+    }
+  }
+};
   border-radius: 50%;
   transition: opacity 500ms;
 `

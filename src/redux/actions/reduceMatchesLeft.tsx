@@ -1,5 +1,4 @@
-import { REDUCE_MATCHES_LEFT } from "../actionStrings"
-
+import { REDUCE_MATCHES_LEFT } from '../actionStrings'
 
 export const reduceMatchesLeft = () => {
   return {

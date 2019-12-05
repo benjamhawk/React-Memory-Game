@@ -3,8 +3,8 @@ import { ResetButtonContainer } from './styled-components/ResetButtonContainer'
 
 export function ResetButton () {
   return (
-   <ResetButtonContainer>
+    <ResetButtonContainer>
      Reset
-   </ResetButtonContainer> 
+    </ResetButtonContainer>
   )
 }

@@ -1,4 +1,4 @@
-import { SET_MATCH_TOTAL } from "../actionStrings"
+import { SET_MATCH_TOTAL } from '../actionStrings'
 
 export const setMatchTotal = (matchTotal: number) => {
   return {

@@ -1,4 +1,4 @@
-import { UNSELECT_IMAGES } from "../actionStrings"
+import { UNSELECT_IMAGES } from '../actionStrings'
 
 export const unselectImages = () => {
   return {

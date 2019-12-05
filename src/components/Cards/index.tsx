@@ -9,12 +9,13 @@ import { imageMap } from '../../lib/imageData/animals'
 import { selectImage } from '../../redux/actions/selectImage'
 import { addMatch } from '../../redux/actions/addMatch'
 import { shuffle } from '../../lib/shuffle'
-import { CardsProps } from '../../models/CardsComponent.model'
+import { CardsProps } from '../../models/CardsComponent'
 import { changePlayer } from '../../redux/actions/changePlayer'
 import { addPoint } from '../../redux/actions/addPoint'
 import { unselectImages } from '../../redux/actions/unselectImages'
 import { reduceMatchesLeft } from '../../redux/actions/reduceMatchesLeft'
 import { setMatchTotal } from '../../redux/actions/setMatchTotal'
+import { addFeedbackMsg } from '../../redux/actions/addFeedbackMessage'
 
 function Cards ({
   images,
@@ -26,14 +27,31 @@ function Cards ({
   addPoint,
   matchesFound,
   gameData,
-  changePlayer
+  changePlayer,
+  addFeedbackMsg
 }: CardsProps) {
   const [cards, setCards] = useState([...images, ...images])
 
   useEffect(() => {
     setCards(shuffle(cards))
     setMatchTotal(images.length)
-  }, [])
+  }, [cards, setMatchTotal, images.length])
+
+  useEffect(() => {
+    const determineWinner = () => {
+      if (gameData.scores.player1 === gameData.scores.player2) {
+        addFeedbackMsg('The Game is a Tie!')
+      } else {
+        addFeedbackMsg(`Player ${
+          gameData.scores.player2 > gameData.scores.player1 ? 2 : 1
+        } Wins!`)
+      }
+    }
+
+    if (gameData.matchesLeft === 0) {
+      determineWinner()
+    }
+  }, [gameData.matchesLeft, addFeedbackMsg, gameData.scores])
 
   useEffect(() => {
     const twoImagesSelected = selectedImages.first !== -1 && selectedImages.second !== -1
@@ -45,6 +63,9 @@ function Cards ({
         addMatch(cards[selectedImages.first].name)
         addPoint(gameData.currentPlayer)
         reduceMatchesLeft()
+        addFeedbackMsg('You Found a Match!')
+      } else {
+        addFeedbackMsg(`Not a Match!`)
       }
     }
 
@@ -59,12 +80,20 @@ function Cards ({
     }
 
     processPlayerTurn()
-
-  }, [selectedImages.second])
+  }, [
+    selectedImages,
+    addFeedbackMsg,
+    addMatch,
+    addPoint,
+    cards,
+    gameData.currentPlayer,
+    changePlayer,
+    unselectImages
+  ])
 
   const onCardClick = (index: number) => {
-    if (index !== selectedImages.first
-      || selectedImages.second !== -1) {
+    if (index !== selectedImages.first ||
+      selectedImages.second !== -1) {
       selectImage(index)
     }
   }
@@ -77,14 +106,14 @@ function Cards ({
     <Card
       key={index}
       onClick={() => onCardClick(index)}
-      isHidden={checkIfCardIsHidden(index) === -1 ? false : true}
+      isHidden={checkIfCardIsHidden(index) !== -1}
     >
       <Img
         src={imageMap[image.name]}
         key={index}
         isSelected={
-          selectedImages.first === index
-          || selectedImages.second === index
+          selectedImages.first === index ||
+          selectedImages.second === index
         }
         isHidden={checkIfCardIsHidden(index)}
         draggable={false}
@@ -108,4 +137,13 @@ const mapStateToProps = (state: AppState) => {
   }
 }
 
-export default connect(mapStateToProps, { selectImage, unselectImages, addMatch, setMatchTotal, changePlayer, addPoint, reduceMatchesLeft })(Cards)
+export default connect(mapStateToProps, {
+  selectImage,
+  unselectImages,
+  addMatch,
+  setMatchTotal,
+  changePlayer,
+  addPoint,
+  reduceMatchesLeft,
+  addFeedbackMsg
+})(Cards)

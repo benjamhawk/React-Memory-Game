@@ -1,10 +1,25 @@
 import React from 'react'
 import { FeedbackTextContainer } from './styled-components/FeedbackTextContainer'
+import { connect } from 'react-redux'
+import { AppState } from '../../redux'
+import { FeedbackMsgModel } from '../../models/FeedBackMsgModel'
 
-export function FeedbackText () {
+type Props = {
+  feedbackMsg: FeedbackMsgModel
+}
+
+function FeedbackText ({ feedbackMsg }: Props) {
   return (
     <FeedbackTextContainer>
-      Try Again
+      {feedbackMsg}
     </FeedbackTextContainer>
   )
 }
+
+const mapStateToProps = (state: AppState) => {
+  return {
+    feedbackMsg: state.feedbackMsg
+  }
+}
+
+export default connect(mapStateToProps)(FeedbackText)

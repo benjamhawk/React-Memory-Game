@@ -1,5 +1,4 @@
-import { SELECT_IMAGE } from "../actionStrings"
-
+import { SELECT_IMAGE } from '../actionStrings'
 
 export const selectImage = (index: number) => {
   return {

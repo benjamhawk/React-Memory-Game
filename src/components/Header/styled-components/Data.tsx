@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Data = styled.span`
   color: ${props => props.theme.headerDataColor};

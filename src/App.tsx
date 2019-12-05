@@ -1,10 +1,10 @@
 import React from 'react'
-import './App.css';
-import { AppContainer } from './styled-components/AppContainer';
-import { ThemeProvider } from 'styled-components';
-import { animalTheme } from './themes';
+import './App.css'
+import { AppContainer } from './styled-components/AppContainer'
+import { ThemeProvider } from 'styled-components'
+import { animalTheme } from './themes'
 import Header from './components/Header'
-import Cards from './components/Cards';
+import Cards from './components/Cards'
 
 function App () {
   return (
@@ -18,4 +18,4 @@ function App () {
   )
 }
 
-export default App;
+export default App
