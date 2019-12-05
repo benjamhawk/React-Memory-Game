@@ -9,7 +9,6 @@ export type CardsProps = {
   }
   selectImage: (index: any) => void,
   unselectImages: () => void
-  reduceMatchesLeft: () => void
   addFeedbackMsg: (msg: string) => void
   setMatchTotal: (matchTotal: number) => void
   addMatch: any

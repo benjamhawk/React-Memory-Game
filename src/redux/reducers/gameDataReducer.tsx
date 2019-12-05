@@ -38,11 +38,6 @@ export default (state: GameDataModel = INITIAL_STATE, { type, payload }: any) =>
         ...state,
         matchesLeft: payload
       }
-    case REDUCE_MATCHES_LEFT:
-      return {
-        ...state,
-        matchesLeft: state.matchesLeft - 1
-      }
     default:
       return state
   }

@@ -13,7 +13,6 @@ import { CardsProps } from '../../models/CardsComponent'
 import { changePlayer } from '../../redux/actions/changePlayer'
 import { addPoint } from '../../redux/actions/addPoint'
 import { unselectImages } from '../../redux/actions/unselectImages'
-import { reduceMatchesLeft } from '../../redux/actions/reduceMatchesLeft'
 import { setMatchTotal } from '../../redux/actions/setMatchTotal'
 import { addFeedbackMsg } from '../../redux/actions/addFeedbackMessage'
 
@@ -44,7 +43,7 @@ function Cards ({
       } else {
         addFeedbackMsg(`Player ${
           gameData.scores.player2 > gameData.scores.player1 ? 2 : 1
-        } Wins!`)
+          } Wins!`)
       }
     }
 
@@ -54,39 +53,38 @@ function Cards ({
   }, [gameData.matchesLeft, addFeedbackMsg, gameData.scores])
 
   useEffect(() => {
-    const twoImagesSelected = selectedImages.first !== -1 && selectedImages.second !== -1
+    const twoImagesSelected = selectedImages.second !== -1
 
     const checkIfMatch = () => {
       const isMatch = cards[selectedImages.first].name === cards[selectedImages.second].name
 
       if (isMatch) {
+        addFeedbackMsg('It\'s a Match! Go again!')
         addMatch(cards[selectedImages.first].name)
         addPoint(gameData.currentPlayer)
-        reduceMatchesLeft()
-        addFeedbackMsg('You Found a Match!')
       } else {
+        changePlayer()
         addFeedbackMsg(`Not a Match!`)
       }
     }
 
-    const processPlayerTurn = () => {
-      if (twoImagesSelected) {
+    const processPlayerTurn = async () => {
+      await setTimeout(() => {
+        unselectImages()
         checkIfMatch()
-        setTimeout(() => {
-          changePlayer()
-          unselectImages()
-        }, 2000)
-      }
+      }, 2000)
     }
 
-    processPlayerTurn()
+    if (twoImagesSelected) {
+      processPlayerTurn()
+    }
   }, [
     selectedImages,
+    gameData.currentPlayer,
+    cards,
     addFeedbackMsg,
     addMatch,
     addPoint,
-    cards,
-    gameData.currentPlayer,
     changePlayer,
     unselectImages
   ])
@@ -144,6 +142,5 @@ export default connect(mapStateToProps, {
   setMatchTotal,
   changePlayer,
   addPoint,
-  reduceMatchesLeft,
   addFeedbackMsg
 })(Cards)

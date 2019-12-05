@@ -34,9 +34,9 @@ export const animalsData: ImageDataModel = {
     // {
     //   name: 'penguin',
     // },
-    {
-      name: 'sheep'
-    },
+    // {
+    //   name: 'sheep'
+    // },
     {
       name: 'walrus'
     },
