@@ -1,4 +1,5 @@
 export const defaultGameData = {
+  gameId: 1,
   currentPlayer: 1,
   scores: {
     player1: 0,

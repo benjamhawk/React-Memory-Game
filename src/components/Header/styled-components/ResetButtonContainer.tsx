@@ -1,10 +1,9 @@
 import styled from 'styled-components'
 
-export const ResetButtonContainer = styled.div`
-  display: grid;
-  grid-row: 1/2;
-  grid-column: 3/4;
-  align-content: center;
-  justify-content: center;
+export const ResetButtonContainer = styled.button`
+  color: ${props => props.theme.fontColor};
   font-size: 1.5rem;
+  border: none;
+  outline: none;
+  background: transparent;
 `

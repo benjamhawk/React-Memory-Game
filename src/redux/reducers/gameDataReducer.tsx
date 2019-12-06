@@ -1,6 +1,6 @@
 import { defaultGameData } from '../../lib/defaultGameData'
 import { GameDataModel } from '../../models/GameData'
-import { ADD_POINT, CHANGE_PLAYER, REDUCE_MATCHES_LEFT, SET_MATCH_TOTAL } from '../actionStrings'
+import { ADD_POINT, CHANGE_PLAYER, SET_MATCH_TOTAL, RESET_GAME } from '../actionStrings'
 
 const INITIAL_STATE: GameDataModel = defaultGameData
 
@@ -37,6 +37,11 @@ export default (state: GameDataModel = INITIAL_STATE, { type, payload }: any) =>
       return {
         ...state,
         matchesLeft: payload
+      }
+    case RESET_GAME:
+      return {
+        ...INITIAL_STATE,
+        gameId: state.gameId + 1
       }
     default:
       return state

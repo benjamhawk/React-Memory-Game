@@ -16,27 +16,27 @@ export const animalsData: ImageDataModel = {
     second: -1
   },
   images: [
-    // {
-    //   name: 'elephant',
-    // },
-    // {
-    //   name: 'fish',
-    // },
-    // {
-    //   name: 'cheetah',
-    // },
-    // {
-    //   name: 'fox',
-    // },
-    // {
-    //   name: 'frog',
-    // },
-    // {
-    //   name: 'penguin',
-    // },
-    // {
-    //   name: 'sheep'
-    // },
+    {
+      name: 'elephant'
+    },
+    {
+      name: 'fish'
+    },
+    {
+      name: 'cheetah'
+    },
+    {
+      name: 'fox'
+    },
+    {
+      name: 'frog'
+    },
+    {
+      name: 'penguin'
+    },
+    {
+      name: 'sheep'
+    },
     {
       name: 'walrus'
     },

@@ -33,8 +33,9 @@ function Cards ({
 
   useEffect(() => {
     setCards(shuffle(cards))
+    console.log(cards)
     setMatchTotal(images.length)
-  }, [cards, setMatchTotal, images.length])
+  }, [cards, setMatchTotal, images.length, gameData.gameId])
 
   useEffect(() => {
     const determineWinner = () => {
@@ -43,7 +44,7 @@ function Cards ({
       } else {
         addFeedbackMsg(`Player ${
           gameData.scores.player2 > gameData.scores.player1 ? 2 : 1
-          } Wins!`)
+        } Wins!`)
       }
     }
 
