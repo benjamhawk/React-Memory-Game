@@ -6,7 +6,6 @@ import { GameData } from './GameData'
 import { Title } from './styled-components/Title'
 import ResetButton from './ResetButton'
 import { MessageBar } from './MessageBar'
-import FeedbackText from './FeedbackText'
 import { AppState } from '../../redux'
 import { GameDataModel } from '../../models/GameData'
 
@@ -23,7 +22,6 @@ function Header ({
         Memory Game
       </Title>
       <ResetButton />
-      <FeedbackText />
       <MessageBar />
     </HeaderContainer>
   )

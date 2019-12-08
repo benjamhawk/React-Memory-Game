@@ -1,7 +1,5 @@
 import React from 'react'
-import { TurnsDataContainer } from './styled-components/TurnsDataContainer'
-import { Label } from './styled-components/Label'
-import { Data } from './styled-components/Data'
+import { CurrentPlayerStyle } from './styled-components/CurrentPlayerStyle'
 import { AppState } from '../../redux'
 import { connect } from 'react-redux'
 
@@ -11,14 +9,9 @@ type Props = {
 
 function CurrentPlayer ({ currentPlayer }: Props) {
   return (
-    <TurnsDataContainer>
-      <Label>
-        Current Player:
-      </Label>
-      <Data>
-       Player {currentPlayer}
-      </Data>
-    </TurnsDataContainer>
+    <CurrentPlayerStyle>
+      Player <span>{currentPlayer}</span>'s Turn
+    </CurrentPlayerStyle>
   )
 }
 

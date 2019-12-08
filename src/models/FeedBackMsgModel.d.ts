@@ -1,1 +1,4 @@
-export type FeedbackMsgModel = string
+export type FeedbackMsgModel = {
+  msg: string,
+  type: string
+}

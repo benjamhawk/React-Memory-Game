@@ -11,9 +11,9 @@ export const Div = styled.div`
  height: 100%;
  background-color: ${props => props.theme.messageBarBgColor};
  color: ${props => props.theme.messageBarFontColor};
+ font-size: 1.3rem;
 
  & p {
    margin: 0;
-   font-size: 1.3rem;
  }
 `

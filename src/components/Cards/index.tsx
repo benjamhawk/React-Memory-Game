@@ -33,18 +33,23 @@ function Cards ({
 
   useEffect(() => {
     setCards(shuffle(cards))
-    console.log(cards)
     setMatchTotal(images.length)
   }, [cards, setMatchTotal, images.length, gameData.gameId])
 
   useEffect(() => {
     const determineWinner = () => {
       if (gameData.scores.player1 === gameData.scores.player2) {
-        addFeedbackMsg('The Game is a Tie!')
+        addFeedbackMsg({
+          msg: 'The Game is a Tie!',
+          type: 'neutral'
+        })
       } else {
-        addFeedbackMsg(`Player ${
-          gameData.scores.player2 > gameData.scores.player1 ? 2 : 1
-        } Wins!`)
+        addFeedbackMsg({
+          msg: `Player ${
+            gameData.scores.player2 > gameData.scores.player1 ? 2 : 1
+          } Wins!`,
+          type: 'success'
+        })
       }
     }
 
@@ -60,12 +65,18 @@ function Cards ({
       const isMatch = cards[selectedImages.first].name === cards[selectedImages.second].name
 
       if (isMatch) {
-        addFeedbackMsg('It\'s a Match! Go again!')
+        addFeedbackMsg({
+          msg: 'It\'s a Match! Go again!',
+          type: 'success'
+        })
         addMatch(cards[selectedImages.first].name)
         addPoint(gameData.currentPlayer)
       } else {
         changePlayer()
-        addFeedbackMsg(`Not a Match!`)
+        addFeedbackMsg({
+          msg: 'Not a Match!',
+          type: 'warning'
+        })
       }
     }
 

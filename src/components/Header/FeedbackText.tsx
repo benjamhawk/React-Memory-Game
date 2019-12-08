@@ -10,8 +10,9 @@ type Props = {
 
 function FeedbackText ({ feedbackMsg }: Props) {
   return (
-    <FeedbackTextContainer>
-      {feedbackMsg}
+    <FeedbackTextContainer
+      type={feedbackMsg.type}>
+      {feedbackMsg.msg}
     </FeedbackTextContainer>
   )
 }

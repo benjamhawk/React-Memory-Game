@@ -1,7 +1,10 @@
 import { FeedbackMsgModel } from '../../models/FeedBackMsgModel'
 import { ADD_FEEDBACK_MSG, RESET_GAME } from '../actionStrings'
 
-const INITIAL_STATE: FeedbackMsgModel = 'Find a Match!'
+const INITIAL_STATE: FeedbackMsgModel = {
+  msg: 'Find a Match!',
+  type: 'neutral'
+}
 
 export default (state: FeedbackMsgModel = INITIAL_STATE, { type, payload }: any) => {
   switch (type) {
