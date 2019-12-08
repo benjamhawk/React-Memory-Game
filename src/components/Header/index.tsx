@@ -1,13 +1,14 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 import { HeaderContainer } from './styled-components/HeaderContainer'
 import { GameData } from './GameData'
 import { Title } from './styled-components/Title'
 import ResetButton from './ResetButton'
+import { MessageBar } from './MessageBar'
 import FeedbackText from './FeedbackText'
 import { AppState } from '../../redux'
 import { GameDataModel } from '../../models/GameData'
-import { connect } from 'react-redux'
 
 type HeaderProps = {
   gameData: GameDataModel
@@ -23,6 +24,7 @@ function Header ({
       </Title>
       <ResetButton />
       <FeedbackText />
+      <MessageBar />
     </HeaderContainer>
   )
 }
