@@ -1,24 +1,24 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFrog } from '@fortawesome/free-solid-svg-icons'
+
 import { HeaderContainer } from './styled-components/HeaderContainer'
-import { GameData } from './GameData'
+import ThemeBtn from './ThemeBtn'
 import { Title } from './styled-components/Title'
 import ResetButton from './ResetButton'
 import { MessageBar } from './MessageBar'
 import { AppState } from '../../redux'
-import { GameDataModel } from '../../models/GameData'
+import MatchesLeftData from './MatchesLeftData'
 
-type HeaderProps = {
-  gameData: GameDataModel
-}
-function Header ({
-  gameData
-}: HeaderProps) {
+const Header = () => {
   return (
     <HeaderContainer>
-      <GameData />
+      <MatchesLeftData />
+      <ThemeBtn />
       <Title>
+        <FontAwesomeIcon icon={faFrog} />
         Memory Game
       </Title>
       <ResetButton />

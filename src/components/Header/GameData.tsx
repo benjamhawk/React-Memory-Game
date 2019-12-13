@@ -6,7 +6,7 @@ import { GameDataContainer } from './styled-components/GameDataContainer'
 export function GameData () {
   return (
     <GameDataContainer>
-      <CurrentPlayer />
+      {/* <CurrentPlayer /> */}
       <MatchesLeftData />
     </GameDataContainer>
   )
