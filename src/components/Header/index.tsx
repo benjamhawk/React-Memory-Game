@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import { connect } from 'react-redux'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -22,7 +22,7 @@ const Header = ({ theme }: { theme: string }) => {
         Memory Game
       </Title>
       <ResetButton />
-      <MessageBar />
+      <MessageBar/>
     </HeaderContainer>
   )
 }

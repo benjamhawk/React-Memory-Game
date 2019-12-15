@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const HeaderContainer = styled.div`
   display: grid;
+  position: relative;
   grid-row: 1/2;
   grid-column: 1/4;
   grid-template-columns: 1fr 1fr 1fr;

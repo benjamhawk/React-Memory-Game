@@ -21,27 +21,27 @@ export const carsData: any = [
   {
     name: 'cars3'
   },
-  // {
-  //   name: 'cars4'
-  // },
-  // {
-  //   name: 'cars5'
-  // },
-  // {
-  //   name: 'cars6'
-  // },
-  // {
-  //   name: 'cars7'
-  // },
-  // {
-  //   name: 'cars8'
-  // },
-  // {
-  //   name: 'cars9'
-  // },
-  // {
-  //   name: 'cars10'
-  // }
+  {
+    name: 'cars4'
+  },
+  {
+    name: 'cars5'
+  },
+  {
+    name: 'cars6'
+  },
+  {
+    name: 'cars7'
+  },
+  {
+    name: 'cars8'
+  },
+  {
+    name: 'cars9'
+  },
+  {
+    name: 'cars10'
+  }
 ]
 
 export const INITIAL_CARS_STATE: ImageDataModel =

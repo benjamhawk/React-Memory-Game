@@ -21,27 +21,27 @@ export const animalsData: any = [
   {
     name: 'cheetah'
   },
-  // {
-  //   name: 'fox'
-  // },
-  // {
-  //   name: 'frog'
-  // },
-  // {
-  //   name: 'penguin'
-  // },
-  // {
-  //   name: 'sheep'
-  // },
-  // {
-  //   name: 'walrus'
-  // },
-  // {
-  //   name: 'giraffe'
-  // },
-  // {
-  //   name: 'zebra'
-  // }
+  {
+    name: 'fox'
+  },
+  {
+    name: 'frog'
+  },
+  {
+    name: 'penguin'
+  },
+  {
+    name: 'sheep'
+  },
+  {
+    name: 'walrus'
+  },
+  {
+    name: 'giraffe'
+  },
+  {
+    name: 'zebra'
+  }
 ]
 
 export const INITIAL_ANIMALS_STATE: ImageDataModel =
