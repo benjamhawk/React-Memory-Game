@@ -9,48 +9,52 @@ import walrus from '../../assets/images/animals/walrus.jpg'
 import giraffe from '../../assets/images/animals/giraffe.jpg'
 import zebra from '../../assets/images/animals/zebra.jpg'
 import { ImageDataModel } from '../../models/ImageData'
+import { shuffle } from '../shuffle'
 
-export const animalsData: ImageDataModel = {
+export const animalsData: any = [
+  {
+    name: 'elephant'
+  },
+  {
+    name: 'fish'
+  },
+  {
+    name: 'cheetah'
+  },
+  // {
+  //   name: 'fox'
+  // },
+  // {
+  //   name: 'frog'
+  // },
+  // {
+  //   name: 'penguin'
+  // },
+  // {
+  //   name: 'sheep'
+  // },
+  // {
+  //   name: 'walrus'
+  // },
+  // {
+  //   name: 'giraffe'
+  // },
+  // {
+  //   name: 'zebra'
+  // }
+]
+
+export const INITIAL_ANIMALS_STATE: ImageDataModel =
+{
   selectedImages: {
     first: -1,
     second: -1
   },
-  images: [
-    {
-      name: 'elephant'
-    },
-    {
-      name: 'fish'
-    },
-    {
-      name: 'cheetah'
-    },
-    {
-      name: 'fox'
-    },
-    {
-      name: 'frog'
-    },
-    {
-      name: 'penguin'
-    },
-    {
-      name: 'sheep'
-    },
-    {
-      name: 'walrus'
-    },
-    {
-      name: 'giraffe'
-    },
-    {
-      name: 'zebra'
-    }
-  ],
+  images: shuffle([...animalsData, ...animalsData]),
   matchesFound: []
 }
 
-export const imageMap: any = {
+export const imageMapAnimals: any = {
   elephant: elephant,
   fish: fish,
   cheetah: cheetah,

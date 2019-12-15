@@ -17,4 +17,5 @@ export type CardsProps = {
   gameData: GameDataModel
   changePlayer: () => void
   addPoint: (player: number) => void
+  theme: string
 }

@@ -15,13 +15,13 @@ export type Theme = {
 export const animalTheme: Theme = {
   name: 'animal',
   fontColor: '#FFF',
-  headerBgColor: '#4B7221',
+  headerBgColor: '#303451',
   headerDataColor: '#E6D55D',
-  messageBarFontColor: '#4B7221',
+  messageBarFontColor: '#303451',
   messageBarNeutralColor: '#2d2d2d',
   messageBarBgColor: '#CCC',
   warningColor: 'red',
-  bgColor: 'linear-gradient(90deg, rgba(217,175,52) 0%, rgba(210,179,86) 50%, rgba(214,168,32) 100%)',
-  cardColor: '#CA4113',
+  bgColor: 'linear-gradient(90deg, rgba(75,134,147,1) 0%, rgba(109,139,145,1) 50%, rgba(75,134,147,1) 100%)',
+  cardColor: '#83A57A',
   cardShadow: '#44434370'
 }

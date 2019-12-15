@@ -8,14 +8,15 @@ import { AppState } from '../../redux'
 import { resetGame } from '../../redux/actions/resetGame'
 
 type Props = {
-  resetGame: () => void,
+  resetGame: any
   matchesLeft: number
+  theme: string
 }
 
-function ResetButton ({ resetGame, matchesLeft }: Props) {
+function ResetButton ({ resetGame, matchesLeft, theme }: Props) {
   return (
     <ResetButtonContainer
-      onClick={resetGame}>
+      onClick={() => resetGame(theme)}>
       <FontAwesomeIcon icon={faRedo} />
       {matchesLeft ? 'Reset Game' : 'Play Again'}
     </ResetButtonContainer>
@@ -24,7 +25,8 @@ function ResetButton ({ resetGame, matchesLeft }: Props) {
 
 const mapStateToProps = (state: AppState) => {
   return {
-    matchesLeft: state.gameData.matchesLeft
+    matchesLeft: state.gameData.matchesLeft,
+    theme: state.theme
   }
 }
 

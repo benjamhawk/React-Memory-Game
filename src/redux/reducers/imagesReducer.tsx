@@ -1,10 +1,9 @@
-import { animalsData } from '../../lib/imageData/animals'
-import { SET_IMAGES, SELECT_IMAGE, ADD_MATCH, UNSELECT_IMAGES, RESET_GAME } from '../actionStrings'
+import { INITIAL_ANIMALS_STATE } from '../../lib/imageData/animals'
+import { INITIAL_CARS_STATE } from '../../lib/imageData/cars'
+import { SET_IMAGES, SELECT_IMAGE, ADD_MATCH, UNSELECT_IMAGES, RESET_GAME, CHANGE_THEME } from '../actionStrings'
 import { ImageDataModel } from '../../models/ImageData'
 
-const INITIAL_STATE: ImageDataModel = animalsData
-
-export default (state: ImageDataModel = INITIAL_STATE, { type, payload }: any) => {
+export default (state: ImageDataModel = INITIAL_ANIMALS_STATE, { type, payload }: any) => {
   switch (type) {
     case SET_IMAGES:
       return payload
@@ -41,8 +40,8 @@ export default (state: ImageDataModel = INITIAL_STATE, { type, payload }: any) =
         ...state,
         matchesFound: [...state.matchesFound, payload]
       }
-    case RESET_GAME:
-      return INITIAL_STATE
+    case CHANGE_THEME || RESET_GAME:
+      return payload === 'animals' ? INITIAL_ANIMALS_STATE : INITIAL_CARS_STATE
     default:
       return state
   }

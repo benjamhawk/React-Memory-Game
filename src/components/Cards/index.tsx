@@ -5,7 +5,8 @@ import { connect } from 'react-redux'
 import { Card } from './styled-components/Card'
 import { CardContainer } from './styled-components/CardContainer'
 import { Img } from './styled-components/Img'
-import { imageMap } from '../../lib/imageData/animals'
+import { imageMapAnimals } from '../../lib/imageData/animals'
+import { imageMapCars } from '../../lib/imageData/cars'
 import { selectImage } from '../../redux/actions/selectImage'
 import { addMatch } from '../../redux/actions/addMatch'
 import { shuffle } from '../../lib/shuffle'
@@ -27,14 +28,15 @@ function Cards ({
   matchesFound,
   gameData,
   changePlayer,
-  addFeedbackMsg
+  addFeedbackMsg,
+  theme
 }: CardsProps) {
-  const [cards, setCards] = useState([...images, ...images])
+  const imageMap = theme === 'animals' ? imageMapAnimals : imageMapCars
 
   useEffect(() => {
-    setCards(shuffle(cards))
+    // setCards(shuffle(cards))
     setMatchTotal(images.length)
-  }, [cards, setMatchTotal, images.length, gameData.gameId])
+  }, [setMatchTotal, images, gameData.gameId, theme])
 
   useEffect(() => {
     const determineWinner = () => {
@@ -62,14 +64,14 @@ function Cards ({
     const twoImagesSelected = selectedImages.second !== -1
 
     const checkIfMatch = () => {
-      const isMatch = cards[selectedImages.first].name === cards[selectedImages.second].name
+      const isMatch = images[selectedImages.first].name === images[selectedImages.second].name
 
       if (isMatch) {
         addFeedbackMsg({
           msg: 'It\'s a Match! Go again!',
           type: 'success'
         })
-        addMatch(cards[selectedImages.first].name)
+        addMatch(images[selectedImages.first].name)
         addPoint(gameData.currentPlayer)
       } else {
         changePlayer()
@@ -93,7 +95,7 @@ function Cards ({
   }, [
     selectedImages,
     gameData.currentPlayer,
-    cards,
+    images,
     addFeedbackMsg,
     addMatch,
     addPoint,
@@ -109,10 +111,10 @@ function Cards ({
   }
 
   const checkIfCardIsHidden = (index: number): number => {
-    return matchesFound.indexOf(cards[index].name)
+    return matchesFound.indexOf(images[index].name)
   }
 
-  const imageElements: any = cards.map((image: any, index: number): any =>
+  const imageElements: any = images.map((image: any, index: number): any =>
     <Card
       key={index}
       onClick={() => onCardClick(index)}
@@ -143,7 +145,8 @@ const mapStateToProps = (state: AppState) => {
     images: state.imageData.images,
     selectedImages: state.imageData.selectedImages,
     matchesFound: state.imageData.matchesFound,
-    gameData: state.gameData
+    gameData: state.gameData,
+    theme: state.theme
   }
 }
 

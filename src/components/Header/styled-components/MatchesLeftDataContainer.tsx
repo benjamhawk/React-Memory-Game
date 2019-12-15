@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const MatchesLeftDataContainer = styled.p`
+export const MatchesLeftDataContainer = styled.div`
   display: grid;
   grid-column: 1/2;
   grid-row: 2/3;
