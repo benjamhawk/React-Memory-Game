@@ -40,7 +40,8 @@ export default (state: ImageDataModel = INITIAL_ANIMALS_STATE, { type, payload }
         ...state,
         matchesFound: [...state.matchesFound, payload]
       }
-    case CHANGE_THEME || RESET_GAME:
+    case CHANGE_THEME:
+    case RESET_GAME:
       return payload === 'animals' ? INITIAL_ANIMALS_STATE : INITIAL_CARS_STATE
     default:
       return state

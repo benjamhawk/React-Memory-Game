@@ -1,21 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { AppState } from '../../redux'
 import { connect } from 'react-redux'
 
 import { Card } from './styled-components/Card'
 import { CardContainer } from './styled-components/CardContainer'
 import { Img } from './styled-components/Img'
-import { imageMapAnimals } from '../../lib/imageData/animals'
-import { imageMapCars } from '../../lib/imageData/cars'
 import { selectImage } from '../../redux/actions/selectImage'
 import { addMatch } from '../../redux/actions/addMatch'
-import { shuffle } from '../../lib/shuffle'
 import { CardsProps } from '../../models/CardsComponent'
 import { changePlayer } from '../../redux/actions/changePlayer'
 import { addPoint } from '../../redux/actions/addPoint'
 import { unselectImages } from '../../redux/actions/unselectImages'
 import { setMatchTotal } from '../../redux/actions/setMatchTotal'
 import { addFeedbackMsg } from '../../redux/actions/addFeedbackMessage'
+import { imageMapAnimals } from '../../lib/imageData/animals'
+import { imageMapCars } from '../../lib/imageData/cars'
+
+import { useDetermineWinner } from '../../lib/customHooks/useDetermineWinner'
+import { useSetMatchTotal } from '../../lib/customHooks/useSetMatchTotal'
+import { useProcessTurn } from '../../lib/customHooks/useProcessTurn'
+import { useShuffledCards } from '../../lib/customHooks/useShuffledCards'
+import { useSetImageMap } from '../../lib/customHooks/useSetImageMap'
 
 function Cards ({
   images,
@@ -31,77 +36,22 @@ function Cards ({
   addFeedbackMsg,
   theme
 }: CardsProps) {
-  const imageMap = theme === 'animals' ? imageMapAnimals : imageMapCars
+  const [imageMap, setImageMap] = useState(imageMapAnimals)
+  const shuffledCards = useShuffledCards(images, gameData.gameId)
 
-  useEffect(() => {
-    // setCards(shuffle(cards))
-    setMatchTotal(images.length)
-  }, [setMatchTotal, images, gameData.gameId, theme])
-
-  useEffect(() => {
-    const determineWinner = () => {
-      if (gameData.scores.player1 === gameData.scores.player2) {
-        addFeedbackMsg({
-          msg: 'The Game is a Tie!',
-          type: 'neutral'
-        })
-      } else {
-        addFeedbackMsg({
-          msg: `Player ${
-            gameData.scores.player2 > gameData.scores.player1 ? 2 : 1
-          } Wins!`,
-          type: 'success'
-        })
-      }
-    }
-
-    if (gameData.matchesLeft === 0) {
-      determineWinner()
-    }
-  }, [gameData.matchesLeft, addFeedbackMsg, gameData.scores])
-
-  useEffect(() => {
-    const twoImagesSelected = selectedImages.second !== -1
-
-    const checkIfMatch = () => {
-      const isMatch = images[selectedImages.first].name === images[selectedImages.second].name
-
-      if (isMatch) {
-        addFeedbackMsg({
-          msg: 'It\'s a Match! Go again!',
-          type: 'success'
-        })
-        addMatch(images[selectedImages.first].name)
-        addPoint(gameData.currentPlayer)
-      } else {
-        changePlayer()
-        addFeedbackMsg({
-          msg: 'Not a Match!',
-          type: 'warning'
-        })
-      }
-    }
-
-    const processPlayerTurn = async () => {
-      await setTimeout(() => {
-        unselectImages()
-        checkIfMatch()
-      }, 2000)
-    }
-
-    if (twoImagesSelected) {
-      processPlayerTurn()
-    }
-  }, [
-    selectedImages,
-    gameData.currentPlayer,
-    images,
-    addFeedbackMsg,
+  useSetImageMap(theme, setImageMap, imageMapAnimals, imageMapCars)
+  useSetMatchTotal(setMatchTotal, images.length / 2, gameData.gameId)
+  useDetermineWinner(addFeedbackMsg, gameData.matchesLeft, gameData.scores)
+  useProcessTurn(
     addMatch,
     addPoint,
+    addFeedbackMsg,
+    unselectImages,
     changePlayer,
-    unselectImages
-  ])
+    images,
+    selectedImages,
+    gameData.currentPlayer
+  )
 
   const onCardClick = (index: number) => {
     if (index !== selectedImages.first ||
@@ -114,12 +64,13 @@ function Cards ({
     return matchesFound.indexOf(images[index].name)
   }
 
-  const imageElements: any = images.map((image: any, index: number): any =>
+  const imageElements: any = shuffledCards.map((image: any, index: number): any =>
     <Card
       key={index}
       onClick={() => onCardClick(index)}
       isHidden={checkIfCardIsHidden(index) !== -1}
     >
+      {/* {console.log(images)} */}
       <Img
         src={imageMap[image.name]}
         key={index}

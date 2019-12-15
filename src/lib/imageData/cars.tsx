@@ -10,7 +10,6 @@ import cars9 from '../../assets/images/cars/cars9.jpg'
 import cars10 from '../../assets/images/cars/cars10.jpg'
 
 import { ImageDataModel } from '../../models/ImageData'
-import { shuffle } from '../shuffle'
 
 export const carsData: any = [
   {
@@ -51,7 +50,7 @@ export const INITIAL_CARS_STATE: ImageDataModel =
     first: -1,
     second: -1
   },
-  images: shuffle([...carsData, ...carsData]),
+  images: [...carsData, ...carsData],
   matchesFound: []
 }
 

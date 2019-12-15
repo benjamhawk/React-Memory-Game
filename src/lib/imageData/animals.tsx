@@ -50,7 +50,7 @@ export const INITIAL_ANIMALS_STATE: ImageDataModel =
     first: -1,
     second: -1
   },
-  images: shuffle([...animalsData, ...animalsData]),
+  images: [...animalsData, ...animalsData],
   matchesFound: []
 }
 
