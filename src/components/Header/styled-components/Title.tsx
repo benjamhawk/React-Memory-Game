@@ -8,6 +8,8 @@ export const Title = styled.h1`
   font-weight: 600;
 
   & svg {
+    color: ${props => props.theme.headerIconColor};
     padding-right: 10px;
+    transition: 250ms;
   }
 `

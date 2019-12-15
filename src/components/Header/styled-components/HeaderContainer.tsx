@@ -12,4 +12,5 @@ export const HeaderContainer = styled.div`
   height: 100%;
   background-color: ${props => props.theme.headerBgColor};
   color: ${props => props.theme.fontColor};
+  transition: background 250ms linear, color 250ms linear;
 `

@@ -7,5 +7,6 @@ export const AppContainer = styled.div`
   width: 100%;
   height: 100%;
   font-family: 'Montserrat', sans-serif;
-  background-image: ${props => props.theme.bgColor};
+  background: ${props => props.theme.bgColor};
+  transition: background 250ms linear, color 250ms linear;
 `

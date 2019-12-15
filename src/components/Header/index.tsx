@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFrog } from '@fortawesome/free-solid-svg-icons'
+import { faFrog, faCarSide } from '@fortawesome/free-solid-svg-icons'
 
 import { HeaderContainer } from './styled-components/HeaderContainer'
 import ThemeBtn from './ThemeBtn'
@@ -12,13 +12,13 @@ import { MessageBar } from './MessageBar'
 import { AppState } from '../../redux'
 import MatchesLeftData from './MatchesLeftData'
 
-const Header = () => {
+const Header = ({ theme }: { theme: string }) => {
   return (
     <HeaderContainer>
       <MatchesLeftData />
       <ThemeBtn />
       <Title>
-        <FontAwesomeIcon icon={faFrog} />
+        <FontAwesomeIcon icon={theme === 'animals' ? faFrog : faCarSide}/>
         Memory Game
       </Title>
       <ResetButton />
@@ -29,7 +29,7 @@ const Header = () => {
 
 const mapStateToProps = (state: AppState) => {
   return {
-    gameData: state.gameData
+    theme: state.theme
   }
 }
 
