@@ -22,6 +22,7 @@ import { useProcessTurn } from '../../lib/customHooks/useProcessTurn'
 import { useShuffledCards } from '../../lib/customHooks/useShuffledCards'
 import { useSetImageMap } from '../../lib/customHooks/useSetImageMap'
 import { incrementLoadedImages } from '../../redux/actions/incrementLoadedImages'
+import { LoadingText } from './styled-components/LoadingText'
 
 function Cards ({
   images,
@@ -95,6 +96,9 @@ function Cards ({
   return (
     <CardContainer>
       {imageElements}
+      <LoadingText>
+        {loadedImages < shuffledCards.length ? 'Loading Cards. This may take a few seconds...' : ''}
+      </LoadingText>
     </CardContainer>
   )
 }
