@@ -1,13 +1,15 @@
 import styled from 'styled-components'
 
 type Props = {
-  isHidden: boolean
+  isHidden: boolean,
+  isLoaded: boolean
 }
 export const Card = styled.div`
   align-self: center;
   justify-self: center;
   width: 130px;
   height: 130px;
+  display: ${(props: Props) => props.isLoaded ? 'block' : 'none'};
   background-color: ${(props: Props) => {
     if (!props.isHidden) {
       return props => props.theme.cardColor

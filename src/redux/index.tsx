@@ -6,18 +6,21 @@ import { GameDataModel } from '../models/GameData'
 import { FeedbackMsgModel } from '../models/FeedBackMsgModel'
 import feedbackMsgReducer from './reducers/feedbackMsgReducer'
 import themeReducer from './reducers/themeReducer'
+import loadedImagesReducer from './reducers/loadedImagesReducer'
 import { ThemeModel } from '../models/ThemeModel'
 
 export type AppState = {
   imageData: ImageDataModel,
   gameData: GameDataModel,
   feedbackMsg: FeedbackMsgModel,
-  theme: ThemeModel
+  theme: ThemeModel,
+  loadedImages: number
 }
 
 export default combineReducers({
   imageData: imagesReducer,
   gameData: gameDataReducer,
   feedbackMsg: feedbackMsgReducer,
-  theme: themeReducer
+  theme: themeReducer,
+  loadedImages: loadedImagesReducer
 })

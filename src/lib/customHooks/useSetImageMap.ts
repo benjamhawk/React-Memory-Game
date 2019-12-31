@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 
 export const useSetImageMap = (theme: string, setImageMap: any, imageMapAnimals: any, imageMapCars: any) => {
   useEffect(() => {

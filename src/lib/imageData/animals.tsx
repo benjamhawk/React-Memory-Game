@@ -9,7 +9,6 @@ import walrus from '../../assets/images/animals/walrus.jpg'
 import giraffe from '../../assets/images/animals/giraffe.jpg'
 import zebra from '../../assets/images/animals/zebra.jpg'
 import { ImageDataModel } from '../../models/ImageData'
-import { shuffle } from '../shuffle'
 
 export const animalsData: any = [
   {

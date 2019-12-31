@@ -21,12 +21,15 @@ import { useSetMatchTotal } from '../../lib/customHooks/useSetMatchTotal'
 import { useProcessTurn } from '../../lib/customHooks/useProcessTurn'
 import { useShuffledCards } from '../../lib/customHooks/useShuffledCards'
 import { useSetImageMap } from '../../lib/customHooks/useSetImageMap'
+import { incrementLoadedImages } from '../../redux/actions/incrementLoadedImages'
 
 function Cards ({
   images,
+  loadedImages,
   selectedImages,
   selectImage,
   unselectImages,
+  incrementLoadedImages,
   addMatch,
   setMatchTotal,
   addPoint,
@@ -64,13 +67,17 @@ function Cards ({
     return matchesFound.indexOf(images[index].name)
   }
 
+  const onImageLoad = () => {
+    incrementLoadedImages()
+  }
+
   const imageElements: any = shuffledCards.map((image: any, index: number): any =>
     <Card
       key={index}
       onClick={() => onCardClick(index)}
       isHidden={checkIfCardIsHidden(index) !== -1}
+      isLoaded={loadedImages >= shuffledCards.length}
     >
-      {/* {console.log(images)} */}
       <Img
         src={imageMap[image.name]}
         key={index}
@@ -80,6 +87,7 @@ function Cards ({
         }
         isHidden={checkIfCardIsHidden(index)}
         draggable={false}
+        onLoad={() => onImageLoad()}
       />
     </Card>
   )
@@ -94,6 +102,7 @@ function Cards ({
 const mapStateToProps = (state: AppState) => {
   return {
     images: state.imageData.images,
+    loadedImages: state.loadedImages,
     selectedImages: state.imageData.selectedImages,
     matchesFound: state.imageData.matchesFound,
     gameData: state.gameData,
@@ -108,5 +117,6 @@ export default connect(mapStateToProps, {
   setMatchTotal,
   changePlayer,
   addPoint,
-  addFeedbackMsg
+  addFeedbackMsg,
+  incrementLoadedImages
 })(Cards)

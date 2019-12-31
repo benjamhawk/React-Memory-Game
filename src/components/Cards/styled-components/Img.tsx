@@ -14,7 +14,7 @@ export const Img = styled.img`
     } else if (props.isSelected) {
       return 1
     } else {
-      return 1
+      return 0
     }
   }
 };
