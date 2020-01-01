@@ -9,4 +9,8 @@ export const PlayerNameText = styled.span`
   /* display: ${(props: Props) => props.isCurrentPlayer ? 'list-item' : 'block'};
   list-style-type: disc; */
   /* list-style-position: inside; */
+
+  @media screen and (orientation: portrait) {
+  font-size: 1.2rem;
+}
 `

@@ -12,4 +12,8 @@ export const Title = styled.h1`
     padding-right: 10px;
     transition: 250ms;
   }
+
+  @media screen and (orientation: portrait) {
+  font-size: 2rem;
+}
 `

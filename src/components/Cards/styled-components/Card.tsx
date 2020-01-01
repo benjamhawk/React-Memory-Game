@@ -24,4 +24,9 @@ export const Card = styled.div`
       ? `${props.theme.cardShadow} 0px 3px 2px`
       : ''
 };
+
+@media screen and (orientation: portrait) {
+  width: 95px;
+  height: 95px;
+}
 `

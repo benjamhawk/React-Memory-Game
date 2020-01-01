@@ -15,4 +15,8 @@ export const ResetButtonContainer = styled.button`
     height: 20px;
     width: 20px;
   }
+
+  @media screen and (orientation: portrait) {
+  font-size: 1.2rem;
+}
 `
