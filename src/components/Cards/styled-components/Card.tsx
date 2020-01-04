@@ -26,7 +26,17 @@ export const Card = styled.div`
 };
 
 @media screen and (orientation: portrait) {
-  width: 95px;
-  height: 95px;
+  width: 100px;
+  height: 100px;
+}
+
+@media (max-width: 600px) and (orientation: portrait) {
+  width: 75px;
+  height: 75px;
+}
+
+@media (max-width: 750px) and (orientation: landscape) {
+  width: 80px;
+  height: 80px;
 }
 `

@@ -1,9 +1,33 @@
 import styled from 'styled-components'
 
 export const CurrentPlayerStyle = styled.p`
-  & span {
-    /* color: ${props => props.theme.warningColor}; */
+  & .playerNum {
     font-weight: 600;
-    /* font-size: 1.5rem; */
+  }
+
+  .fullPlayerName {
+    display: inline;
+  }
+  .shortPlayerName {
+    display: none;
+    font-weight: 600;
+  }
+
+  @media (max-width: 600px) and (orientation: portrait) {
+    .fullPlayerName {
+      display: none;
+    }
+    .shortPlayerName {
+      display: inline;
+    }
+  }
+
+  @media (max-width: 750px) and (orientation: landscape) {
+    .fullPlayerName {
+      display: none;
+    }
+    .shortPlayerName {
+      display: inline;
+    }
   }
 `

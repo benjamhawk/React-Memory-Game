@@ -21,4 +21,8 @@ export const Div = styled.div`
  & p {
    margin: 0;
  }
+
+ @media (max-width: 600px) and (orientation: portrait) {
+  font-size: 1rem;
+}
 `

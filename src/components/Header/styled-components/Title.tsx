@@ -16,4 +16,13 @@ export const Title = styled.h1`
   @media screen and (orientation: portrait) {
   font-size: 2rem;
 }
+
+@media (max-width: 600px) and (orientation: portrait) {
+  font-size: 1.5rem;
+  /* grid-row: 1/2; */
+}
+
+@media (max-width: 750px) and (orientation: landscape) {
+    font-size: 2rem;
+}
 `

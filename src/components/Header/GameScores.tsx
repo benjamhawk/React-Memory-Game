@@ -16,7 +16,8 @@ const GameScores = ({ gameData }: Props) => {
       <PlayerNameText
         isCurrentPlayer={gameData.currentPlayer === 1}
       >
-        Player 1:
+        <span className='fullPlayerName'>Player 1: </span>
+        <span className='shortPlayerName'>P1: </span>
       </PlayerNameText>
       <PlayerScoreText>
         {gameData.scores.player1}
@@ -24,7 +25,8 @@ const GameScores = ({ gameData }: Props) => {
       <PlayerNameText
         isCurrentPlayer={gameData.currentPlayer === 2}
       >
-        Player 2:
+        <span className='fullPlayerName'>Player 2: </span>
+        <span className='shortPlayerName'>P2: </span>
       </PlayerNameText>
       <PlayerScoreText>
         {gameData.scores.player2}

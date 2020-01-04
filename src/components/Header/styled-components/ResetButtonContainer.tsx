@@ -19,4 +19,20 @@ export const ResetButtonContainer = styled.button`
   @media screen and (orientation: portrait) {
   font-size: 1.2rem;
 }
+
+  @media (max-width: 600px) and (orientation: portrait) {
+  font-size: 1rem;
+
+  & svg {
+    display: none;
+  }
+  }
+
+  @media (max-width: 750px) and (orientation: landscape) {
+    font-size: 1rem;
+
+  & svg {
+    height: 1rem;
+  }
+}
 `

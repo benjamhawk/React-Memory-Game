@@ -10,7 +10,9 @@ type Props = {
 function CurrentPlayer ({ currentPlayer }: Props) {
   return (
     <CurrentPlayerStyle>
-      Player <span>{currentPlayer}</span>'s Turn
+      <span className='fullPlayerName'>Player </span>
+      <span className='shortPlayerName'>P</span>
+      <span className='playerNum'>{currentPlayer}</span>'s Turn
     </CurrentPlayerStyle>
   )
 }

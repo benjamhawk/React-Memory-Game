@@ -9,4 +9,8 @@ export const Label = styled.h1`
   @media screen and (max-width: 1040px) {
     font-size: 1.3rem;
   }
+
+  @media (max-width: 750px) and (orientation: landscape) {
+    font-size: 1rem;
+}
 `

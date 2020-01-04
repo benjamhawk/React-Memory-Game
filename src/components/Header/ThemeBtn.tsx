@@ -16,7 +16,10 @@ const ThemeBtn = ({ changeTheme, theme }: any) => {
 
   return (
     <ThemeBtnContainer>
-      <ThemeBtnTitle>Choose a theme:</ThemeBtnTitle>
+      <ThemeBtnTitle>
+        <span className='fullText'>Choose a theme:</span>
+        <span className='shortText'>Theme:</span>
+      </ThemeBtnTitle>
       <ThemeBtnThumbnail
         onClick={() => onThemeClick('animals')}
         src={imageMapAnimals.penguin}
