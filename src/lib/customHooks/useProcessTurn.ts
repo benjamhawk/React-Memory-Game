@@ -18,7 +18,7 @@ export const useProcessTurn = (
 
       if (isMatch) {
         addFeedbackMsg({
-          msg: 'It\'s a Match! Go again!',
+          msg: 'Correct! Go again!',
           type: 'success'
         })
         addMatch(images[selectedImages.first].name)
