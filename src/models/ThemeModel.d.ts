@@ -1,1 +1,1 @@
-export type ThemeModel = string
+export type ThemeModel = 'animals' | 'cars'

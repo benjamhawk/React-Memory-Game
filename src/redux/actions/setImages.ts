@@ -1,8 +1,8 @@
-import { SET_IMAGES } from '../actionStrings'
+import { ActionTypes } from './types'
 
 export const setImages = (images: string[]) => {
   return {
-    type: SET_IMAGES,
+    type: ActionTypes.SET_IMAGES,
     payload: images
   }
 }

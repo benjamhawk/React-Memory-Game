@@ -1,8 +1,8 @@
-import { CHANGE_PLAYER } from '../actionStrings'
+import { ActionTypes } from './types'
 
 export const changePlayer = () => {
   return {
-    type: CHANGE_PLAYER,
+    type: ActionTypes.CHANGE_PLAYER,
     payload: 'change player'
   }
 }

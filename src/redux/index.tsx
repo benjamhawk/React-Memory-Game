@@ -9,11 +9,11 @@ import themeReducer from './reducers/themeReducer'
 import loadedImagesReducer from './reducers/loadedImagesReducer'
 import { ThemeModel } from '../models/ThemeModel'
 
-export type AppState = {
-  imageData: ImageDataModel,
-  gameData: GameDataModel,
-  feedbackMsg: FeedbackMsgModel,
-  theme: ThemeModel,
+export interface AppState {
+  imageData: ImageDataModel
+  gameData: GameDataModel
+  feedbackMsg: FeedbackMsgModel
+  theme: ThemeModel
   loadedImages: number
 }
 

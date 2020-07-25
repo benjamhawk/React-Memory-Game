@@ -1,8 +1,8 @@
-import { INCREMENT_LOADED_IMAGES } from '../actionStrings'
+import { ActionTypes } from './types'
 
 export const incrementLoadedImages = () => {
   return {
-    type: INCREMENT_LOADED_IMAGES,
+    type: ActionTypes.INCREMENT_LOADED_IMAGES,
     payload: 'increment'
   }
 }

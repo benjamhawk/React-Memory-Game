@@ -1,17 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App'
+import { Provider } from 'react-redux'
 import { compose, createStore } from 'redux'
 import reducers from './redux'
-import { Provider } from 'react-redux'
+import App from './App'
 
-const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+import './index.css'
 
-const store = createStore(
-  reducers,
-  composeEnhancers()
-)
+const composeEnhancers =
+  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+const store = createStore(reducers, composeEnhancers())
 
 ReactDOM.render(
   <Provider store={store}>

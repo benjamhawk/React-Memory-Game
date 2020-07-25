@@ -1,8 +1,8 @@
-import { SET_MATCH_TOTAL } from '../actionStrings'
+import { ActionTypes } from './types'
 
 export const setMatchTotal = (matchTotal: number) => {
   return {
-    type: SET_MATCH_TOTAL,
+    type: ActionTypes.SET_MATCH_TOTAL,
     payload: matchTotal
   }
 }

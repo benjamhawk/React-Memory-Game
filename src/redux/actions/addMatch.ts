@@ -1,8 +1,8 @@
-import { ADD_MATCH } from '../actionStrings'
+import { ActionTypes } from './types'
 
 export const addMatch = (name: string) => {
   return {
-    type: ADD_MATCH,
+    type: ActionTypes.ADD_MATCH,
     payload: name
   }
 }

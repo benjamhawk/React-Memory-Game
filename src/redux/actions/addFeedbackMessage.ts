@@ -1,9 +1,9 @@
-import { ADD_FEEDBACK_MSG } from '../actionStrings'
 import { FeedbackMsgModel } from '../../models/FeedBackMsgModel'
+import { ActionTypes } from './types'
 
 export const addFeedbackMsg = (payload: FeedbackMsgModel) => {
   return {
-    type: ADD_FEEDBACK_MSG,
+    type: ActionTypes.ADD_FEEDBACK_MSG,
     payload: payload
   }
 }

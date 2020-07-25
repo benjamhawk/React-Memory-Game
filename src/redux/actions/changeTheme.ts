@@ -1,8 +1,8 @@
-import { CHANGE_THEME } from '../actionStrings'
+import { ActionTypes } from './types'
 
 export const changeTheme = (theme: string) => {
   return {
-    type: CHANGE_THEME,
+    type: ActionTypes.CHANGE_THEME,
     payload: theme
   }
 }

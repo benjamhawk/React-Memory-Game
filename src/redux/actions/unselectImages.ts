@@ -1,8 +1,8 @@
-import { UNSELECT_IMAGES } from '../actionStrings'
+import { ActionTypes } from './types'
 
 export const unselectImages = () => {
   return {
-    type: UNSELECT_IMAGES,
+    type: ActionTypes.UNSELECT_IMAGES,
     payload: 'unselect images'
   }
 }

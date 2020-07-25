@@ -1,8 +1,8 @@
-import { RESET_GAME } from '../actionStrings'
+import { ActionTypes } from './types'
 
 export const resetGame = (theme: string) => {
   return {
-    type: RESET_GAME,
+    type: ActionTypes.RESET_GAME,
     payload: theme
   }
 }

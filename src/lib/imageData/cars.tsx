@@ -44,8 +44,7 @@ export const carsData: any = [
   }
 ]
 
-export const INITIAL_CARS_STATE: ImageDataModel =
-{
+export const INITIAL_CARS_STATE: ImageDataModel = {
   selectedImages: {
     first: -1,
     second: -1
@@ -55,14 +54,14 @@ export const INITIAL_CARS_STATE: ImageDataModel =
 }
 
 export const imageMapCars: any = {
-  cars1: cars1,
-  cars2: cars2,
-  cars3: cars3,
-  cars4: cars4,
-  cars5: cars5,
-  cars6: cars6,
-  cars7: cars7,
-  cars8: cars8,
-  cars9: cars9,
-  cars10: cars10
+  cars1,
+  cars2,
+  cars3,
+  cars4,
+  cars5,
+  cars6,
+  cars7,
+  cars8,
+  cars9,
+  cars10
 }

@@ -1,23 +1,32 @@
 import { ImageModel } from './ImageData'
 import { GameDataModel } from './GameData'
 import { FeedbackMsgModel } from './FeedBackMsgModel'
+import { ThemeModel } from './ThemeModel'
+import {
+  unselectImages,
+  incrementLoadedImages,
+  addFeedbackMsg,
+  addMatch,
+  changePlayer,
+  addPoint
+} from '../redux/actions'
 
 export type CardsProps = {
-  images: ImageModel,
-  loadedImages: number,
+  images: ImageModel
+  loadedImages: number
   selectedImages: {
-    first: number,
+    first: number
     second: number
   }
-  selectImage: (index: any) => void,
-  unselectImages: () => void
-  incrementLoadedImages: () => void
-  addFeedbackMsg: (msg: FeedbackMsgModel) => void
-  setMatchTotal: (matchTotal: number) => void
-  addMatch: any
-  matchesFound: string[],
+  selectImage: typeof selectImage
+  unselectImages: typeof unselectImages
+  incrementLoadedImages: typeof incrementLoadedImages
+  addFeedbackMsg: typeof addFeedbackMsg
+  setMatchTotal: typeof setMatchTotal
+  addMatch: typeof addMatch
+  matchesFound: string[]
   gameData: GameDataModel
-  changePlayer: () => void
-  addPoint: (player: number) => void
-  theme: string
+  changePlayer: typeof changePlayer
+  addPoint: typeof addPoint
+  theme: ThemeModel
 }

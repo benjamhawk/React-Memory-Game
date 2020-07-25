@@ -1,8 +1,8 @@
-import { SELECT_IMAGE } from '../actionStrings'
+import { ActionTypes } from './types'
 
 export const selectImage = (index: number) => {
   return {
-    type: SELECT_IMAGE,
+    type: ActionTypes.SELECT_IMAGE,
     payload: index
   }
 }

@@ -1,30 +1,29 @@
 import React, { useState } from 'react'
 import { AppState } from '../../redux'
 import { connect } from 'react-redux'
-
-import { Card } from './styled-components/Card'
-import { CardContainer } from './styled-components/CardContainer'
-import { Img } from './styled-components/Img'
-import { selectImage } from '../../redux/actions/selectImage'
-import { addMatch } from '../../redux/actions/addMatch'
 import { CardsProps } from '../../models/CardsComponent'
-import { changePlayer } from '../../redux/actions/changePlayer'
-import { addPoint } from '../../redux/actions/addPoint'
-import { unselectImages } from '../../redux/actions/unselectImages'
-import { setMatchTotal } from '../../redux/actions/setMatchTotal'
-import { addFeedbackMsg } from '../../redux/actions/addFeedbackMessage'
 import { imageMapAnimals } from '../../lib/imageData/animals'
 import { imageMapCars } from '../../lib/imageData/cars'
+import {
+  selectImage,
+  unselectImages,
+  addMatch,
+  setMatchTotal,
+  changePlayer,
+  addPoint,
+  addFeedbackMsg,
+  incrementLoadedImages
+} from '../../redux/actions'
+import {
+  useShuffledCards,
+  useSetImageMap,
+  useSetMatchTotal,
+  useDetermineWinner,
+  useProcessTurn
+} from '../../lib/customHooks'
+import { Card, Img, CardContainer, LoadingText } from './styled-components'
 
-import { useDetermineWinner } from '../../lib/customHooks/useDetermineWinner'
-import { useSetMatchTotal } from '../../lib/customHooks/useSetMatchTotal'
-import { useProcessTurn } from '../../lib/customHooks/useProcessTurn'
-import { useShuffledCards } from '../../lib/customHooks/useShuffledCards'
-import { useSetImageMap } from '../../lib/customHooks/useSetImageMap'
-import { incrementLoadedImages } from '../../redux/actions/incrementLoadedImages'
-import { LoadingText } from './styled-components/LoadingText'
-
-function Cards ({
+const Cards = ({
   images,
   loadedImages,
   selectedImages,
@@ -39,11 +38,9 @@ function Cards ({
   changePlayer,
   addFeedbackMsg,
   theme
-}: CardsProps) {
-  const [imageMap, setImageMap] = useState(imageMapAnimals)
+}: CardsProps) => {
   const shuffledCards = useShuffledCards(images, gameData.gameId)
-
-  useSetImageMap(theme, setImageMap, imageMapAnimals, imageMapCars)
+  const imageMap = useSetImageMap(theme, imageMapAnimals, imageMapCars)
   useSetMatchTotal(setMatchTotal, images.length / 2, gameData.gameId)
   useDetermineWinner(addFeedbackMsg, gameData.matchesLeft, gameData.scores)
   useProcessTurn(
@@ -58,8 +55,7 @@ function Cards ({
   )
 
   const onCardClick = (index: number) => {
-    if (index !== selectedImages.first ||
-      selectedImages.second !== -1) {
+    if (index !== selectedImages.first || selectedImages.second !== -1) {
       selectImage(index)
     }
   }
@@ -72,32 +68,32 @@ function Cards ({
     incrementLoadedImages()
   }
 
-  const imageElements: any = shuffledCards.map((image: any, index: number): any =>
+  const imageElements = shuffledCards.map((image, index) => (
     <Card
       key={index}
       onClick={() => onCardClick(index)}
       isHidden={checkIfCardIsHidden(index) !== -1}
-      isLoaded={loadedImages >= shuffledCards.length}
-    >
+      isLoaded={loadedImages >= shuffledCards.length}>
       <Img
         src={imageMap[image.name]}
         key={index}
         isSelected={
-          selectedImages.first === index ||
-          selectedImages.second === index
+          selectedImages.first === index || selectedImages.second === index
         }
         isHidden={checkIfCardIsHidden(index)}
         draggable={false}
         onLoad={() => onImageLoad()}
       />
     </Card>
-  )
+  ))
 
   return (
     <CardContainer>
       {imageElements}
       <LoadingText>
-        {loadedImages < shuffledCards.length ? 'Loading Cards. This may take a few seconds...' : ''}
+        {loadedImages < shuffledCards.length
+          ? 'Loading Cards. This may take a few seconds...'
+          : ''}
       </LoadingText>
     </CardContainer>
   )

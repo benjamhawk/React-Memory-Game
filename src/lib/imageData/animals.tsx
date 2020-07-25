@@ -43,8 +43,7 @@ export const animalsData: any = [
   }
 ]
 
-export const INITIAL_ANIMALS_STATE: ImageDataModel =
-{
+export const INITIAL_ANIMALS_STATE: ImageDataModel = {
   selectedImages: {
     first: -1,
     second: -1
@@ -54,14 +53,14 @@ export const INITIAL_ANIMALS_STATE: ImageDataModel =
 }
 
 export const imageMapAnimals: any = {
-  elephant: elephant,
-  fish: fish,
-  cheetah: cheetah,
-  fox: fox,
-  frog: frog,
-  penguin: penguin,
-  sheep: sheep,
-  walrus: walrus,
-  giraffe: giraffe,
-  zebra: zebra
+  elephant,
+  fish,
+  cheetah,
+  fox,
+  frog,
+  penguin,
+  sheep,
+  walrus,
+  giraffe,
+  zebra
 }

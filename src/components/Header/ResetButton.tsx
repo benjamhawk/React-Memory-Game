@@ -5,7 +5,7 @@ import { faRedo } from '@fortawesome/free-solid-svg-icons'
 import { ResetButtonContainer } from './styled-components/ResetButtonContainer'
 import { connect } from 'react-redux'
 import { AppState } from '../../redux'
-import { resetGame } from '../../redux/actions/resetGame'
+import { resetGame } from '../../redux/actions/'
 
 type Props = {
   resetGame: any
@@ -13,10 +13,9 @@ type Props = {
   theme: string
 }
 
-function ResetButton ({ resetGame, matchesLeft, theme }: Props) {
+function ResetButton({ resetGame, matchesLeft, theme }: Props) {
   return (
-    <ResetButtonContainer
-      onClick={() => resetGame(theme)}>
+    <ResetButtonContainer onClick={() => resetGame(theme)}>
       <FontAwesomeIcon icon={faRedo} />
       {matchesLeft ? 'Reset Game' : 'Play Again'}
     </ResetButtonContainer>

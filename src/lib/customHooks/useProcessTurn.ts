@@ -1,20 +1,22 @@
-import { useEffect } from "react"
+import { useEffect } from 'react'
+import { ImageModel, ImageDataModel } from '../../models'
 
 export const useProcessTurn = (
-  addMatch: any, 
-  addPoint: any, 
-  addFeedbackMsg: any, 
-  unselectImages: any,
-  changePlayer: any,
-  images: any,
-  selectedImages: any,
+  addMatch: Function,
+  addPoint: Function,
+  addFeedbackMsg: Function,
+  unselectImages: Function,
+  changePlayer: Function,
+  images: ImageModel,
+  selectedImages: ImageDataModel['selectedImages'],
   currentPlayer: number
 ) => {
   useEffect(() => {
     const twoImagesSelected = selectedImages.second !== -1
 
     const checkIfMatch = () => {
-      const isMatch = images[selectedImages.first].name === images[selectedImages.second].name
+      const isMatch =
+        images[selectedImages.first].name === images[selectedImages.second].name
 
       if (isMatch) {
         addFeedbackMsg({

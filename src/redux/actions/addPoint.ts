@@ -1,8 +1,8 @@
-import { ADD_POINT } from '../actionStrings'
+import { ActionTypes } from './types'
 
 export const addPoint = (player: number) => {
   return {
-    type: ADD_POINT,
+    type: ActionTypes.ADD_POINT,
     payload: player
   }
 }

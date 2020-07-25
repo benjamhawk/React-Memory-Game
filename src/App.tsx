@@ -1,17 +1,18 @@
 import React from 'react'
-import './App.css'
-import { AppContainer } from './styled-components/AppContainer'
 import { ThemeProvider } from 'styled-components'
+import { connect } from 'react-redux'
 import { animalTheme, carTheme } from './themes'
+import { ThemeModel } from './models/'
 import Header from './components/Header'
 import Cards from './components/Cards'
-import { connect } from 'react-redux'
+import { AppContainer } from './styled-components/AppContainer'
+
+import './App.css'
 import { AppState } from './redux'
 
-function App ({ theme }: { theme: string }) {
+const App = ({ theme }: { theme: ThemeModel }) => {
   return (
-    <ThemeProvider
-      theme={theme === 'animals' ? animalTheme : carTheme}>
+    <ThemeProvider theme={theme === 'animals' ? animalTheme : carTheme}>
       <AppContainer>
         <Header />
         <Cards />
@@ -20,10 +21,8 @@ function App ({ theme }: { theme: string }) {
   )
 }
 
-const mapStateToProps = (state: AppState) => {
-  return {
-    theme: state.theme
-  }
+const mapStateToProps = ({ theme }: AppState) => {
+  return { theme }
 }
 
 export default connect(mapStateToProps)(App)
