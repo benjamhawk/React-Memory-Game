@@ -3,21 +3,21 @@ import { AppState } from '../../redux'
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import { imageMapAnimals } from '../../lib/imageData/animals'
 import { imageMapCars } from '../../lib/imageData/cars'
-import { selectImage, incrementLoadedImages } from '../../redux/actions'
+import { selectImage } from '../../redux/actions'
 import {
   useShuffledCards,
   useSetImageMap,
   useSetMatchTotal,
   useDetermineWinner,
-  useProcessTurn
+  useProcessTurn,
+  useLoadedImages
 } from '../../lib/customHooks'
 import { Card, Img, CardContainer, LoadingText } from './styled-components'
 
 export default () => {
-  // Redux state
+  // Redux state hooks
   const {
     imageData: { matchesFound, images, selectedImages },
-    loadedImages,
     gameData: { gameId, matchesLeft, scores, currentPlayer },
     theme
   } = useSelector((state: AppState) => state, shallowEqual)
@@ -29,6 +29,9 @@ export default () => {
   useSetMatchTotal(images.length / 2, gameId)
   useDetermineWinner(matchesLeft, scores)
   useProcessTurn(images, selectedImages, currentPlayer)
+
+  // Misc hooks
+  const { loadedImages, setLoadedImages } = useLoadedImages(theme)
 
   // Util Functions
   const onCardClick = (index: number) => {
@@ -42,7 +45,7 @@ export default () => {
   }
 
   const onImageLoad = () => {
-    dispatch(incrementLoadedImages())
+    setLoadedImages(loadedImages => loadedImages + 1)
   }
 
   const imageElements = shuffledCards.map((image, index) => (
