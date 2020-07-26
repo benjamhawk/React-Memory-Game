@@ -1,19 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { AppState } from '../../redux'
-import { connect } from 'react-redux'
-import { CardsProps } from '../../models/CardsComponent'
+import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import { imageMapAnimals } from '../../lib/imageData/animals'
 import { imageMapCars } from '../../lib/imageData/cars'
-import {
-  selectImage,
-  unselectImages,
-  addMatch,
-  setMatchTotal,
-  changePlayer,
-  addPoint,
-  addFeedbackMsg,
-  incrementLoadedImages
-} from '../../redux/actions'
+import { selectImage, incrementLoadedImages } from '../../redux/actions'
 import {
   useShuffledCards,
   useSetImageMap,
@@ -23,40 +13,27 @@ import {
 } from '../../lib/customHooks'
 import { Card, Img, CardContainer, LoadingText } from './styled-components'
 
-const Cards = ({
-  images,
-  loadedImages,
-  selectedImages,
-  selectImage,
-  unselectImages,
-  incrementLoadedImages,
-  addMatch,
-  setMatchTotal,
-  addPoint,
-  matchesFound,
-  gameData,
-  changePlayer,
-  addFeedbackMsg,
-  theme
-}: CardsProps) => {
-  const shuffledCards = useShuffledCards(images, gameData.gameId)
-  const imageMap = useSetImageMap(theme, imageMapAnimals, imageMapCars)
-  useSetMatchTotal(setMatchTotal, images.length / 2, gameData.gameId)
-  useDetermineWinner(addFeedbackMsg, gameData.matchesLeft, gameData.scores)
-  useProcessTurn(
-    addMatch,
-    addPoint,
-    addFeedbackMsg,
-    unselectImages,
-    changePlayer,
-    images,
-    selectedImages,
-    gameData.currentPlayer
-  )
+export default () => {
+  // Redux state
+  const {
+    imageData: { matchesFound, images, selectedImages },
+    loadedImages,
+    gameData: { gameId, matchesLeft, scores, currentPlayer },
+    theme
+  } = useSelector((state: AppState) => state, shallowEqual)
+  const dispatch = useDispatch()
 
+  // Hooks to direct game flow
+  const shuffledCards = useShuffledCards(images, gameId)
+  const imageMap = useSetImageMap(theme, imageMapAnimals, imageMapCars)
+  useSetMatchTotal(images.length / 2, gameId)
+  useDetermineWinner(matchesLeft, scores)
+  useProcessTurn(images, selectedImages, currentPlayer)
+
+  // Util Functions
   const onCardClick = (index: number) => {
     if (index !== selectedImages.first || selectedImages.second !== -1) {
-      selectImage(index)
+      dispatch(selectImage(index))
     }
   }
 
@@ -65,7 +42,7 @@ const Cards = ({
   }
 
   const onImageLoad = () => {
-    incrementLoadedImages()
+    dispatch(incrementLoadedImages())
   }
 
   const imageElements = shuffledCards.map((image, index) => (
@@ -98,25 +75,3 @@ const Cards = ({
     </CardContainer>
   )
 }
-
-const mapStateToProps = (state: AppState) => {
-  return {
-    images: state.imageData.images,
-    loadedImages: state.loadedImages,
-    selectedImages: state.imageData.selectedImages,
-    matchesFound: state.imageData.matchesFound,
-    gameData: state.gameData,
-    theme: state.theme
-  }
-}
-
-export default connect(mapStateToProps, {
-  selectImage,
-  unselectImages,
-  addMatch,
-  setMatchTotal,
-  changePlayer,
-  addPoint,
-  addFeedbackMsg,
-  incrementLoadedImages
-})(Cards)

@@ -3,30 +3,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRedo } from '@fortawesome/free-solid-svg-icons'
 
 import { ResetButtonContainer } from './styled-components/ResetButtonContainer'
-import { connect } from 'react-redux'
+import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import { AppState } from '../../redux'
 import { resetGame } from '../../redux/actions/'
 
-type Props = {
-  resetGame: any
-  matchesLeft: number
-  theme: string
-}
+export default () => {
+  const {
+    theme,
+    gameData: { matchesLeft }
+  } = useSelector((state: AppState) => state, shallowEqual)
 
-function ResetButton({ resetGame, matchesLeft, theme }: Props) {
+  const dispatch = useDispatch()
+
   return (
-    <ResetButtonContainer onClick={() => resetGame(theme)}>
+    <ResetButtonContainer onClick={() => dispatch(resetGame(theme))}>
       <FontAwesomeIcon icon={faRedo} />
       {matchesLeft ? 'Reset Game' : 'Play Again'}
     </ResetButtonContainer>
   )
 }
-
-const mapStateToProps = (state: AppState) => {
-  return {
-    matchesLeft: state.gameData.matchesLeft,
-    theme: state.theme
-  }
-}
-
-export default connect(mapStateToProps, { resetGame })(ResetButton)

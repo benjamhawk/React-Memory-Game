@@ -1,22 +1,29 @@
 import { useEffect } from 'react'
 import { GameDataModel } from '../../models'
+import { useDispatch } from 'react-redux'
+import { addFeedbackMsg } from '../../redux/actions'
 
 export const useDetermineWinner = (
-  addFeedbackMsg: Function,
   matchesLeft: number,
   scores: GameDataModel['scores']
 ): any => {
+  const dispatch = useDispatch()
+
   const determineWinner = () => {
     if (scores.player1 === scores.player2) {
-      addFeedbackMsg({
-        msg: 'The Game is a Tie!',
-        type: 'neutral'
-      })
+      dispatch(
+        addFeedbackMsg({
+          msg: 'The Game is a Tie!',
+          type: 'neutral'
+        })
+      )
     } else {
-      addFeedbackMsg({
-        msg: `Player ${scores.player2 > scores.player1 ? 2 : 1} Wins!`,
-        type: 'success'
-      })
+      dispatch(
+        addFeedbackMsg({
+          msg: `Player ${scores.player2 > scores.player1 ? 2 : 1} Wins!`,
+          type: 'success'
+        })
+      )
     }
   }
   useEffect(() => {

@@ -1,16 +1,21 @@
 import { useEffect } from 'react'
 import { ImageModel, ImageDataModel } from '../../models'
+import {
+  unselectImages,
+  addMatch,
+  addFeedbackMsg,
+  addPoint,
+  changePlayer
+} from '../../redux/actions'
+import { useDispatch } from 'react-redux'
 
 export const useProcessTurn = (
-  addMatch: Function,
-  addPoint: Function,
-  addFeedbackMsg: Function,
-  unselectImages: Function,
-  changePlayer: Function,
   images: ImageModel,
   selectedImages: ImageDataModel['selectedImages'],
   currentPlayer: number
 ) => {
+  const dispatch = useDispatch()
+
   useEffect(() => {
     const twoImagesSelected = selectedImages.second !== -1
 
@@ -19,24 +24,28 @@ export const useProcessTurn = (
         images[selectedImages.first].name === images[selectedImages.second].name
 
       if (isMatch) {
-        addFeedbackMsg({
-          msg: 'Correct! Go again!',
-          type: 'success'
-        })
-        addMatch(images[selectedImages.first].name)
-        addPoint(currentPlayer)
+        dispatch(
+          addFeedbackMsg({
+            msg: 'Correct! Go again!',
+            type: 'success'
+          })
+        )
+        dispatch(addMatch(images[selectedImages.first].name))
+        dispatch(addPoint(currentPlayer))
       } else {
-        changePlayer()
-        addFeedbackMsg({
-          msg: 'Not a Match!',
-          type: 'warning'
-        })
+        dispatch(changePlayer())
+        dispatch(
+          addFeedbackMsg({
+            msg: 'Not a Match!',
+            type: 'warning'
+          })
+        )
       }
     }
 
     const processPlayerTurn = async () => {
       await setTimeout(() => {
-        unselectImages()
+        dispatch(unselectImages())
         checkIfMatch()
       }, 2000)
     }

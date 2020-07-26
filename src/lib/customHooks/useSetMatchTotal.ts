@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
+import { setMatchTotal } from '../../redux/actions'
+import { useDispatch } from 'react-redux'
 
-export const useSetMatchTotal = (
-  setMatchTotal: Function,
-  imagesLength: number,
-  gameId: number
-) => {
+export const useSetMatchTotal = (imagesLength: number, gameId: number) => {
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    setMatchTotal(imagesLength)
+    dispatch(setMatchTotal(imagesLength))
   }, [setMatchTotal, imagesLength, gameId])
 }

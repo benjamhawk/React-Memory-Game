@@ -1,26 +1,13 @@
 import React from 'react'
 import { FeedbackTextContainer } from './styled-components/FeedbackTextContainer'
-import { connect } from 'react-redux'
+import { useSelector, shallowEqual } from 'react-redux'
 import { AppState } from '../../redux'
-import { FeedbackMsgModel } from '../../models/FeedBackMsgModel'
 
-type Props = {
-  feedbackMsg: FeedbackMsgModel
-}
-
-function FeedbackText ({ feedbackMsg }: Props) {
-  return (
-    <FeedbackTextContainer
-      type={feedbackMsg.type}>
-      {feedbackMsg.msg}
-    </FeedbackTextContainer>
+export default () => {
+  const { type, msg } = useSelector(
+    ({ feedbackMsg }: AppState) => feedbackMsg,
+    shallowEqual
   )
-}
 
-const mapStateToProps = (state: AppState) => {
-  return {
-    feedbackMsg: state.feedbackMsg
-  }
+  return <FeedbackTextContainer type={type}>{msg}</FeedbackTextContainer>
 }
-
-export default connect(mapStateToProps)(FeedbackText)
