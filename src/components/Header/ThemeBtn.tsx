@@ -2,19 +2,18 @@ import React from 'react'
 
 import { imageMapAnimals } from '../../lib/imageData/animals'
 import { imageMapCars } from '../../lib/imageData/cars'
-import { useSelector, shallowEqual } from 'react-redux'
-import { changeTheme } from '../../redux/actions/changeTheme'
 import {
   ThemeBtnContainer,
   ThemeBtnTitle,
   ThemeBtnThumbnail
 } from './styled-components/ThemeBtnStyle'
-import { AppState } from '../../redux'
+import { useTheme } from '../../lib/customHooks/globalStateHooks'
+import { ThemeName, changeTheme } from '../../features/theme/themeSlice'
 
 export default () => {
-  const theme = useSelector(({ theme }: AppState) => theme, shallowEqual)
+  const theme = useTheme()
 
-  const onThemeClick = (newTheme: string) => {
+  const onThemeClick = (newTheme: ThemeName) => {
     if (newTheme !== theme) {
       changeTheme(newTheme)
     }
@@ -22,7 +21,7 @@ export default () => {
 
   return (
     <ThemeBtnContainer>
-      <ThemeBtnTitle>
+      {/* <ThemeBtnTitle>
         <span className="fullText">Choose a theme:</span>
         <span className="shortText">Theme:</span>
       </ThemeBtnTitle>
@@ -34,10 +33,10 @@ export default () => {
       />
       <ThemeBtnThumbnail
         onClick={() => onThemeClick('cars')}
-        src={imageMapCars.cars1}
+
         alt="cars"
         name="cars"
-      />
+      /> */}
     </ThemeBtnContainer>
   )
 }

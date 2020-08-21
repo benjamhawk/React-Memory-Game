@@ -9,7 +9,8 @@ import { Title } from './styled-components/Title'
 import ResetButton from './ResetButton'
 import { MessageBar } from './MessageBar'
 import MatchesLeftData from './MatchesLeftData'
-import { AppState } from '../../redux'
+import { AppState } from '../../App/ReduxStore'
+import SettingsButton from './SettingsButton'
 
 export default () => {
   const theme = useSelector(({ theme }: AppState) => theme, shallowEqual)
@@ -19,9 +20,10 @@ export default () => {
       <MatchesLeftData />
       <Title>
         <FontAwesomeIcon icon={theme === 'animals' ? faFrog : faCarSide} />
-        Memory Game
+        Match the Cards!
       </Title>
       <ResetButton />
+      <SettingsButton />
       <MessageBar />
     </HeaderContainer>
   )

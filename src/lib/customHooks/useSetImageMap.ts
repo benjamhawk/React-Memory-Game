@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
-import { ThemeModel } from '../../models'
+import { imageMapAnimals } from '../imageData/animals'
+import { imageMapCars } from '../imageData/cars'
+import { useTheme } from './globalStateHooks'
 
-export const useSetImageMap = (
-  theme: ThemeModel,
-  imageMapAnimals: any,
-  imageMapCars: any
-) => {
+export const useSetImageMap = () => {
   const [imageMap, setImageMap] = useState(imageMapAnimals)
+  const theme = useTheme()
 
   useEffect(() => {
     theme === 'animals'

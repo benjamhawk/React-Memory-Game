@@ -1,34 +1,35 @@
 import { useEffect } from 'react'
-import { GameDataModel } from '../../models'
 import { useDispatch } from 'react-redux'
-import { addFeedbackMsg } from '../../redux/actions'
+import { useScores, useMatchesLeft } from './globalStateHooks'
+import { addMessage } from '../../features/TwoPlayerGame/twoPlayerGameSlice'
+import { MessageType } from '../../features/TwoPlayerGame/MessageType'
 
-export const useDetermineWinner = (
-  matchesLeft: number,
-  scores: GameDataModel['scores']
-): any => {
+export const useDetermineWinner = () => {
   const dispatch = useDispatch()
+  const scores = useScores()
+  const matchesLeft = useMatchesLeft()
 
   const determineWinner = () => {
     if (scores.player1 === scores.player2) {
       dispatch(
-        addFeedbackMsg({
+        addMessage({
           msg: 'The Game is a Tie!',
-          type: 'neutral'
+          type: MessageType.neutral
         })
       )
     } else {
       dispatch(
-        addFeedbackMsg({
+        addMessage({
           msg: `Player ${scores.player2 > scores.player1 ? 2 : 1} Wins!`,
-          type: 'success'
+          type: MessageType.success
         })
       )
     }
   }
+
   useEffect(() => {
     if (matchesLeft === 0) {
       determineWinner()
     }
-  }, [addFeedbackMsg, matchesLeft, scores])
+  }, [addMessage, matchesLeft, scores])
 }

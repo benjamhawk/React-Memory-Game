@@ -1,13 +1,11 @@
 import React from 'react'
 import { CurrentPlayerStyle } from './styled-components/CurrentPlayerStyle'
-import { AppState } from '../../redux'
 import { useSelector, shallowEqual } from 'react-redux'
+import { AppState } from '../../App/ReduxStore'
+import { useCurrentPlayer } from '../../lib/customHooks/globalStateHooks'
 
 export default () => {
-  const { currentPlayer } = useSelector(
-    ({ gameData }: AppState) => gameData,
-    shallowEqual
-  )
+  const currentPlayer = useCurrentPlayer()
 
   return (
     <CurrentPlayerStyle>

@@ -1,20 +1,23 @@
 import { useEffect } from 'react'
-import { ImageModel, ImageDataModel } from '../../models'
+import { useDispatch } from 'react-redux'
 import {
-  unselectImages,
-  addMatch,
-  addFeedbackMsg,
+  useSelectedImages,
+  useImages,
+  useCurrentPlayer
+} from './globalStateHooks'
+import {
+  addMessage,
   addPoint,
   changePlayer
-} from '../../redux/actions'
-import { useDispatch } from 'react-redux'
+} from '../../features/TwoPlayerGame/twoPlayerGameSlice'
+import { addMatch, unselectImages } from '../../features/Cards/cardsSlice'
+import { MessageType } from '../../features/TwoPlayerGame/MessageType'
 
-export const useProcessTurn = (
-  images: ImageModel,
-  selectedImages: ImageDataModel['selectedImages'],
-  currentPlayer: number
-) => {
+export const useProcessTurn = () => {
   const dispatch = useDispatch()
+  const selectedImages = useSelectedImages()
+  const images = useImages()
+  const currentPlayer = useCurrentPlayer()
 
   useEffect(() => {
     const twoImagesSelected = selectedImages.second !== -1
@@ -25,9 +28,9 @@ export const useProcessTurn = (
 
       if (isMatch) {
         dispatch(
-          addFeedbackMsg({
+          addMessage({
             msg: 'Correct! Go again!',
-            type: 'success'
+            type: MessageType.success
           })
         )
         dispatch(addMatch(images[selectedImages.first].name))
@@ -35,9 +38,9 @@ export const useProcessTurn = (
       } else {
         dispatch(changePlayer())
         dispatch(
-          addFeedbackMsg({
+          addMessage({
             msg: 'Not a Match!',
-            type: 'warning'
+            type: MessageType.warning
           })
         )
       }
@@ -57,7 +60,7 @@ export const useProcessTurn = (
     selectedImages,
     currentPlayer,
     images,
-    addFeedbackMsg,
+    addMessage,
     addMatch,
     addPoint,
     changePlayer,

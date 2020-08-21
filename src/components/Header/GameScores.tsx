@@ -2,14 +2,14 @@ import React from 'react'
 import { GameScoresContainer } from './styled-components/GameScoresContainer'
 import { PlayerNameText } from './styled-components/PlayerNameText'
 import { PlayerScoreText } from './styled-components/PlayerScoreText'
-import { useSelector, shallowEqual } from 'react-redux'
-import { AppState } from '../../redux'
+import {
+  useCurrentPlayer,
+  useScores
+} from '../../lib/customHooks/globalStateHooks'
 
 export default () => {
-  const { currentPlayer, scores } = useSelector(
-    ({ gameData }: AppState) => gameData,
-    shallowEqual
-  )
+  const currentPlayer = useCurrentPlayer()
+  const scores = useScores()
 
   return (
     <GameScoresContainer>

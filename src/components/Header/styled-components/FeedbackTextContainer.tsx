@@ -1,7 +1,8 @@
 import styled from 'styled-components'
+import { MessageType } from '../../../features/TwoPlayerGame/MessageType'
 
 type Props = {
-  type: string
+  type: MessageType
 }
 
 export const FeedbackTextContainer = styled.div`
@@ -9,11 +10,11 @@ export const FeedbackTextContainer = styled.div`
   /* grid-row: 2/3; */
   color: ${(props: Props) => {
     switch (props.type) {
-      case 'neutral':
+      case MessageType.neutral:
         return props => props.theme.messageBarNeutralColor
-      case 'success':
+      case MessageType.success:
         return props => props.theme.messageBarFontColor
-      case 'warning':
+      case MessageType.warning:
         return props => props.theme.warningColor
       default:
         return null

@@ -3,17 +3,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRedo } from '@fortawesome/free-solid-svg-icons'
 
 import { ResetButtonContainer } from './styled-components/ResetButtonContainer'
-import { useSelector, shallowEqual, useDispatch } from 'react-redux'
-import { AppState } from '../../redux'
-import { resetGame } from '../../redux/actions/'
+import { useDispatch } from 'react-redux'
+import {
+  useMatchesLeft,
+  useTheme
+} from '../../lib/customHooks/globalStateHooks'
+import { resetGame } from '../../features/TwoPlayerGame/twoPlayerGameSlice'
 
 export default () => {
-  const {
-    theme,
-    gameData: { matchesLeft }
-  } = useSelector((state: AppState) => state, shallowEqual)
-
+  const matchesLeft = useMatchesLeft()
   const dispatch = useDispatch()
+  const theme = useTheme()
 
   return (
     <ResetButtonContainer onClick={() => dispatch(resetGame(theme))}>

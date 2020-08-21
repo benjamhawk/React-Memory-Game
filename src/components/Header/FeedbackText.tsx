@@ -1,13 +1,9 @@
 import React from 'react'
 import { FeedbackTextContainer } from './styled-components/FeedbackTextContainer'
-import { useSelector, shallowEqual } from 'react-redux'
-import { AppState } from '../../redux'
+import { useMessage } from '../../lib/customHooks/globalStateHooks'
 
 export default () => {
-  const { type, msg } = useSelector(
-    ({ feedbackMsg }: AppState) => feedbackMsg,
-    shallowEqual
-  )
+  const { msg, type } = useMessage()
 
   return <FeedbackTextContainer type={type}>{msg}</FeedbackTextContainer>
 }

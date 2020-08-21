@@ -13,5 +13,5 @@ export const CardContainer = styled.div`
   @media (max-width: 600px) and (orientation: portrait) {
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 10px;
-}
+  }
 `

@@ -8,49 +8,49 @@ import sheep from '../../assets/images/animals/sheep.jpg'
 import walrus from '../../assets/images/animals/walrus.jpg'
 import giraffe from '../../assets/images/animals/giraffe.jpg'
 import zebra from '../../assets/images/animals/zebra.jpg'
-import { ImageDataModel } from '../../models/ImageData'
+import { Image } from '../../features/Cards/cardsSlice'
 
-export const animalsData: any = [
+export const animalImages: Image[] = [
   {
     name: 'elephant'
   },
   {
     name: 'fish'
-  },
-  {
-    name: 'cheetah'
-  },
-  {
-    name: 'fox'
-  },
-  {
-    name: 'frog'
-  },
-  {
-    name: 'penguin'
-  },
-  {
-    name: 'sheep'
-  },
-  {
-    name: 'walrus'
-  },
-  {
-    name: 'giraffe'
-  },
-  {
-    name: 'zebra'
   }
+  // {
+  //   name: 'cheetah'
+  // },
+  // {
+  //   name: 'fox'
+  // },
+  // {
+  //   name: 'frog'
+  // },
+  // {
+  //   name: 'penguin'
+  // },
+  // {
+  //   name: 'sheep'
+  // },
+  // {
+  //   name: 'walrus'
+  // },
+  // {
+  //   name: 'giraffe'
+  // },
+  // {
+  //   name: 'zebra'
+  // }
 ]
 
-export const INITIAL_ANIMALS_STATE: ImageDataModel = {
-  selectedImages: {
-    first: -1,
-    second: -1
-  },
-  images: [...animalsData, ...animalsData],
-  matchesFound: []
-}
+// export const INITIAL_ANIMALS_STATE: CardData = {
+//   selectedImages: {
+//     first: -1,
+//     second: -1
+//   },
+//   images: [...animalsData, ...animalsData],
+//   matchesFound: []
+// }
 
 export const imageMapAnimals: any = {
   elephant,

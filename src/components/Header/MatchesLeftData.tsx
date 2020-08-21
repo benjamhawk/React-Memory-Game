@@ -2,14 +2,10 @@ import React from 'react'
 import { Label } from './styled-components/Label'
 import { Data } from './styled-components/Data'
 import { MatchesLeftDataContainer } from './styled-components/MatchesLeftDataContainer'
-import { AppState } from '../../redux'
-import { useSelector, shallowEqual } from 'react-redux'
+import { useMatchesLeft } from '../../lib/customHooks/globalStateHooks'
 
 export default () => {
-  const { matchesLeft } = useSelector(
-    ({ gameData }: AppState) => gameData,
-    shallowEqual
-  )
+  const matchesLeft = useMatchesLeft()
 
   return (
     <MatchesLeftDataContainer>

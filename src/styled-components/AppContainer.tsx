@@ -6,6 +6,7 @@ export const AppContainer = styled.div`
   grid-template-rows: 120px 6fr 1fr;
   width: 100%;
   height: 100%;
+  min-height: 100vh;
   font-family: 'Montserrat', sans-serif;
   background: ${props => props.theme.bgColor};
   transition: background 250ms linear, color 250ms linear;

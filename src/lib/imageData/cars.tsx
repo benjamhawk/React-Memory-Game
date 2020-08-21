@@ -9,9 +9,9 @@ import cars8 from '../../assets/images/cars/cars8.jpg'
 import cars9 from '../../assets/images/cars/cars9.jpg'
 import cars10 from '../../assets/images/cars/cars10.jpg'
 
-import { ImageDataModel } from '../../models/ImageData'
+import { Image } from '../../features/Cards/cardsSlice'
 
-export const carsData: any = [
+export const carImages: Image[] = [
   {
     name: 'cars1'
   },
@@ -44,16 +44,7 @@ export const carsData: any = [
   }
 ]
 
-export const INITIAL_CARS_STATE: ImageDataModel = {
-  selectedImages: {
-    first: -1,
-    second: -1
-  },
-  images: [...carsData, ...carsData],
-  matchesFound: []
-}
-
-export const imageMapCars: any = {
+export const imageMapCars = {
   cars1,
   cars2,
   cars3,
