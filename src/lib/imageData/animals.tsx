@@ -16,31 +16,31 @@ export const animalImages: Image[] = [
   },
   {
     name: 'fish'
+  },
+  {
+    name: 'cheetah'
+  },
+  {
+    name: 'fox'
+  },
+  {
+    name: 'frog'
+  },
+  {
+    name: 'penguin'
+  },
+  {
+    name: 'sheep'
+  },
+  {
+    name: 'walrus'
+  },
+  {
+    name: 'giraffe'
+  },
+  {
+    name: 'zebra'
   }
-  // {
-  //   name: 'cheetah'
-  // },
-  // {
-  //   name: 'fox'
-  // },
-  // {
-  //   name: 'frog'
-  // },
-  // {
-  //   name: 'penguin'
-  // },
-  // {
-  //   name: 'sheep'
-  // },
-  // {
-  //   name: 'walrus'
-  // },
-  // {
-  //   name: 'giraffe'
-  // },
-  // {
-  //   name: 'zebra'
-  // }
 ]
 
 // export const INITIAL_ANIMALS_STATE: CardData = {
