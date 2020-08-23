@@ -61,6 +61,7 @@ const cards = createSlice({
           payload === 'animals'
             ? shuffle([...animalImages, ...animalImages])
             : shuffle([...carImages, ...carImages])
+        state.matchesFound = []
       })
 })
 

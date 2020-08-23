@@ -50,7 +50,7 @@ export const useProcessTurn = () => {
       await setTimeout(() => {
         dispatch(unselectImages())
         checkIfMatch()
-      }, 2000)
+      }, 1000)
     }
 
     if (twoImagesSelected) {

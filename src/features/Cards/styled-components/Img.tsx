@@ -19,4 +19,5 @@ export const Img = styled.img`
   }};
   border-radius: 50%;
   transition: opacity 500ms;
+  object-fit: cover;
 `

@@ -8,6 +8,7 @@ import {
   useMatchesFound,
   useImages
 } from '../../lib/customHooks/globalStateHooks'
+import { Spinner } from 'react-bootstrap'
 
 export default () => {
   const dispatch = useDispatch()
@@ -53,11 +54,7 @@ export default () => {
   return (
     <CardContainer>
       {imageElements}
-      <LoadingText>
-        {loadedImages < images.length
-          ? 'Loading Cards. This may take a few seconds...'
-          : ''}
-      </LoadingText>
+      {loadedImages < images.length && <Spinner animation="border" />}
     </CardContainer>
   )
 }
