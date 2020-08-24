@@ -9,6 +9,7 @@ export const ResetButtonContainer = styled.button`
   outline: none;
   background: transparent;
   cursor: pointer;
+  position: relative;
 
   & svg {
     padding-right: 10px;
@@ -17,14 +18,17 @@ export const ResetButtonContainer = styled.button`
   }
 
   @media screen and (orientation: portrait) {
-    font-size: 1.2rem;
-  }
-
-  @media (max-width: 600px) and (orientation: portrait) {
     font-size: 1rem;
-
-    & svg {
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    span {
       display: none;
+    }
+    svg {
+      height: 25px;
+      width: 25px;
+      padding-right: 0;
     }
   }
 
@@ -35,7 +39,7 @@ export const ResetButtonContainer = styled.button`
       height: 1rem;
     }
   }
-  @media screen and (max-width: 1040px) {
+  @media (max-width: 1040px) and (orientation: landscape) {
     font-size: 1.3rem;
   }
 `

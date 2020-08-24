@@ -20,7 +20,7 @@ export default () => {
       <MatchesLeftData />
       <Title>
         <FontAwesomeIcon icon={theme === 'animals' ? faFrog : faCarSide} />
-        Match the Cards!
+        <span>Match the Cards!</span>
       </Title>
       <ResetButton />
       <SettingsButton />

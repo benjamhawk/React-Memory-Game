@@ -18,7 +18,7 @@ export default () => {
   return (
     <ResetButtonContainer onClick={() => dispatch(resetGame(theme))}>
       <FontAwesomeIcon icon={faRedo} />
-      {matchesLeft ? 'Reset Game' : 'Play Again'}
+      <span>{matchesLeft ? 'Reset Game' : 'Play Again'}</span>
     </ResetButtonContainer>
   )
 }

@@ -8,7 +8,7 @@ export const MatchesLeftDataContainer = styled.div`
   align-content: center;
   margin: 0;
 
-  /* @media (max-width: 600px) and (orientation: portrait) {
+  @media screen and (orientation: portrait) {
     display: none;
-  } */
+  }
 `

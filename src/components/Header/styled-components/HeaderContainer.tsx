@@ -15,6 +15,14 @@ export const HeaderContainer = styled.div`
   color: ${props => props.theme.fontColor};
   transition: background 250ms linear, color 250ms linear;
 
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: 1fr 1.5fr 1fr;
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+
   /* @media screen and (orientation: portrait) {
     grid-template-rows: 1.5fr 2fr 0.5fr;
   }

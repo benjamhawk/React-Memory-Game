@@ -25,4 +25,8 @@ export const FeedbackTextContainer = styled.div`
   justify-content: center;
   /* color: ${props => props.theme.warningColor}; */
   font-weight: 400;
+
+  @media screen and (orientation: portrait) {
+    font-size: 0.8rem;
+  }
 `
